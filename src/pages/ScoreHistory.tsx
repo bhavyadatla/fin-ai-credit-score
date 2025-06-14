@@ -73,49 +73,49 @@ const ScoreHistory = () => {
     <DashboardLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Score History</h1>
-          <p className="text-gray-600">Track your credit score changes over time</p>
+          <h1 className="text-3xl font-bold text-orange-600">Score History</h1>
+          <p className="text-orange-400">Track your credit score changes over time</p>
         </div>
 
         {/* Current Score and Trend */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card>
+          <Card className="bg-white border border-orange-100 shadow-md rounded-xl">
             <CardHeader>
-              <CardTitle className="flex items-center">
-                <Calendar className="h-5 w-5 mr-2 text-blue-600" />
+              <CardTitle className="flex items-center text-orange-700">
+                <Calendar className="h-5 w-5 mr-2 text-orange-500" />
                 Current Score
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-blue-600 mb-2">{currentScore}</div>
-              <p className="text-sm text-gray-600">
+              <div className="text-3xl font-bold text-orange-600 mb-2">{currentScore}</div>
+              <p className="text-sm text-orange-300">
                 Updated {scoreHistory.length > 0 ? new Date(scoreHistory[scoreHistory.length - 1].score_date).toLocaleDateString() : 'Never'}
               </p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white border border-orange-100 shadow-md rounded-xl">
             <CardHeader>
-              <CardTitle className="flex items-center">
+              <CardTitle className="flex items-center text-orange-700">
                 {trend === 'up' ? (
-                  <TrendingUp className="h-5 w-5 mr-2 text-green-600" />
+                  <TrendingUp className="h-5 w-5 mr-2 text-orange-600" />
                 ) : trend === 'down' ? (
-                  <TrendingDown className="h-5 w-5 mr-2 text-red-600" />
+                  <TrendingDown className="h-5 w-5 mr-2 text-orange-600" />
                 ) : (
-                  <Calendar className="h-5 w-5 mr-2 text-gray-600" />
+                  <Calendar className="h-5 w-5 mr-2 text-orange-500" />
                 )}
                 Recent Change
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className={`text-3xl font-bold mb-2 ${
-                trend === 'up' ? 'text-green-600' : 
-                trend === 'down' ? 'text-red-600' : 
-                'text-gray-600'
+                trend === 'up' ? 'text-orange-500' : 
+                trend === 'down' ? 'text-orange-300' : 
+                'text-orange-300'
               }`}>
                 {trend === 'up' ? '+' : trend === 'down' ? '-' : ''}{change}
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-orange-300">
                 {trend === 'up' ? 'Points gained' : 
                  trend === 'down' ? 'Points lost' : 
                  'No change'}
@@ -123,32 +123,33 @@ const ScoreHistory = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white border border-orange-100 shadow-md rounded-xl">
             <CardHeader>
-              <CardTitle>Total Records</CardTitle>
+              <CardTitle className="text-orange-700">Total Records</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-orange-600 mb-2">{scoreHistory.length}</div>
-              <p className="text-sm text-gray-600">Score updates recorded</p>
+              <div className="text-3xl font-bold text-orange-500 mb-2">{scoreHistory.length}</div>
+              <p className="text-sm text-orange-300">Score updates recorded</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Score Chart */}
         {scoreHistory.length > 0 ? (
-          <Card>
+          <Card className="bg-white border border-orange-100 shadow-md rounded-xl">
             <CardHeader>
-              <CardTitle>Score Trend</CardTitle>
-              <CardDescription>Your credit score changes over time</CardDescription>
+              <CardTitle className="text-orange-700">Score Trend</CardTitle>
+              <CardDescription className="text-orange-400">Your credit score changes over time</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={formatChartData()}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis domain={['dataMin - 50', 'dataMax + 50']} />
+                    <XAxis dataKey="date" tick={{ fill: "#e56c09" }} />
+                    <YAxis domain={['dataMin - 50', 'dataMax + 50']} tick={{ fill: "#e56c09" }} />
                     <Tooltip 
+                      contentStyle={{ background: "#fff7ed", borderColor: "#ffedd5", color: "#ea580c" }}
                       formatter={(value: any) => [value, 'Credit Score']}
                       labelFormatter={(label) => `Date: ${label}`}
                     />
@@ -166,11 +167,11 @@ const ScoreHistory = () => {
             </CardContent>
           </Card>
         ) : (
-          <Card>
+          <Card className="bg-white border border-orange-100 shadow-md rounded-xl">
             <CardContent className="flex items-center justify-center h-64">
               <div className="text-center">
-                <p className="text-gray-500 mb-4">No score history available</p>
-                <p className="text-sm text-gray-400">Your score history will appear here as it's tracked over time</p>
+                <p className="text-orange-400 mb-4">No score history available</p>
+                <p className="text-sm text-orange-200">Your score history will appear here as it's tracked over time</p>
               </div>
             </CardContent>
           </Card>
