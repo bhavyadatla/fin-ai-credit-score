@@ -51,7 +51,7 @@ const HowItWorks = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-blue-50">
       <Navbar />
-      
+
       <div className="pt-20 pb-16 px-4">
         <div className="container mx-auto">
           {/* Hero Section */}
@@ -62,7 +62,7 @@ const HowItWorks = () => {
             <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent mb-6">
               How CreditAI Works
             </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-700 max-w-3xl mx-auto">
               Discover how our AI-powered platform creates accurate credit scores using 
               alternative data sources, making financial inclusion accessible to everyone.
             </p>
@@ -70,7 +70,7 @@ const HowItWorks = () => {
 
           {/* Process Steps */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12 text-gray-800 animate-slide-in">The CreditAI Process</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-orange-800 animate-slide-in">The CreditAI Process</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {steps.map((step, index) => (
                 <div key={index} className="relative">
@@ -79,15 +79,15 @@ const HowItWorks = () => {
                       <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center animate-bounce-custom`}>
                         <step.icon className="h-8 w-8 text-white" />
                       </div>
-                      <div className="text-lg font-bold text-gray-500 mb-2">Step {index + 1}</div>
-                      <CardTitle className="text-xl text-gray-800">{step.title}</CardTitle>
+                      <div className="text-lg font-bold text-slate-500 mb-2">Step {index + 1}</div>
+                      <CardTitle className="text-xl text-orange-800">{step.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 text-center">{step.description}</p>
+                      <p className="text-slate-700 text-center">{step.description}</p>
                     </CardContent>
                   </Card>
                   {index < steps.length - 1 && (
-                    <ArrowRight className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 h-6 w-6 text-gray-400 animate-pulse-slow" />
+                    <ArrowRight className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 h-6 w-6 text-orange-300 animate-pulse-slow" />
                   )}
                 </div>
               ))}
@@ -97,8 +97,8 @@ const HowItWorks = () => {
           {/* Alternative Data Points */}
           <div className="mb-16">
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 animate-fade-in">
-              <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Alternative Data Points We Analyze</h2>
-              <p className="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-8 text-orange-800">Alternative Data Points We Analyze</h2>
+              <p className="text-center text-slate-700 mb-8 max-w-3xl mx-auto">
                 Unlike traditional credit scoring that relies solely on credit history, we analyze 
                 over 50 different data points to create a comprehensive picture of creditworthiness.
               </p>
@@ -106,7 +106,7 @@ const HowItWorks = () => {
                 {dataPoints.map((point, index) => (
                   <div key={index} className="flex items-center space-x-3 animate-slide-in" style={{ animationDelay: `${index * 0.1}s` }}>
                     <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
-                    <span className="text-gray-700">{point}</span>
+                    <span className="text-slate-700">{point}</span>
                   </div>
                 ))}
               </div>
@@ -115,7 +115,7 @@ const HowItWorks = () => {
 
           {/* Technology Stack */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12 text-gray-800 animate-fade-in">Our Technology</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-orange-800 animate-fade-in">Our Technology</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-0 shadow-lg hover-lift animate-scale-in">
                 <CardHeader>
@@ -169,10 +169,10 @@ const HowItWorks = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
-  );
+  )
 };
 
 export default HowItWorks;
+

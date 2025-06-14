@@ -44,7 +44,7 @@ const FAQs = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-blue-50">
       <Navbar />
-      
+
       <div className="pt-20 pb-16 px-4">
         <div className="container mx-auto">
           {/* Hero Section */}
@@ -55,7 +55,7 @@ const FAQs = () => {
             <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent mb-6">
               Frequently Asked Questions
             </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-700 max-w-3xl mx-auto">
               Get answers to common questions about our AI-powered alternative credit scoring platform.
             </p>
           </div>
@@ -64,16 +64,16 @@ const FAQs = () => {
           <div className="max-w-4xl mx-auto">
             <Card className="border-0 shadow-lg hover-lift animate-scale-in">
               <CardHeader>
-                <CardTitle className="text-2xl text-center text-gray-800">Common Questions</CardTitle>
+                <CardTitle className="text-2xl text-center text-orange-800">Common Questions</CardTitle>
               </CardHeader>
               <CardContent>
                 <Accordion type="single" collapsible className="w-full">
                   {faqs.map((faq, index) => (
                     <AccordionItem key={index} value={`item-${index}`} className="animate-slide-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                      <AccordionTrigger className="text-left text-lg font-medium text-gray-800 hover:text-orange-600 transition-colors">
+                      <AccordionTrigger className="text-left text-lg font-medium text-slate-800 hover:text-orange-600 transition-colors">
                         {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent className="text-gray-700 text-base leading-relaxed">
+                      <AccordionContent className="text-slate-700 text-base leading-relaxed">
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>
@@ -85,8 +85,8 @@ const FAQs = () => {
 
           {/* Contact Section */}
           <div className="text-center mt-16 animate-fade-in">
-            <h2 className="text-3xl font-bold mb-4 text-gray-800">Still have questions?</h2>
-            <p className="text-xl text-gray-700 mb-8">
+            <h2 className="text-3xl font-bold mb-4 text-orange-800">Still have questions?</h2>
+            <p className="text-xl text-slate-700 mb-8">
               Our support team is here to help you with any additional questions.
             </p>
             <a
@@ -98,10 +98,10 @@ const FAQs = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
 };
 
 export default FAQs;
+
