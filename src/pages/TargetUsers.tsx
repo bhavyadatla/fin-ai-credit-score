@@ -143,10 +143,43 @@ const TargetUsers = () => {
             <h2 className="text-3xl font-bold text-center mb-12">Specific Use Cases</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {useCases.map((useCase, index) => (
-                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                <Card
+                  key={index}
+                  className="
+                    text-center 
+                    bg-white 
+                    shadow-md
+                    rounded-xl
+                    transition
+                    duration-200
+                    hover:shadow-lg
+                    hover:-translate-y-2
+                    border-0
+                    animate-fade-in
+                  "
+                  style={{
+                    // Alternate card accents for visual interest
+                    borderTop:
+                      index === 0
+                        ? "4px solid #fb923c" // orange-400
+                        : index === 1
+                        ? "4px solid #3b82f6" // blue-500
+                        : "4px solid #22c55e", // green-500
+                  }}
+                >
                   <CardHeader>
-                    <useCase.icon className="h-12 w-12 text-orange-600 mx-auto mb-4" />
-                    <CardTitle className="text-xl">{useCase.title}</CardTitle>
+                    <useCase.icon
+                      className={`h-12 w-12 mb-4 mx-auto
+                        ${
+                          index === 0
+                            ? "text-orange-500"
+                            : index === 1
+                            ? "text-blue-500"
+                            : "text-green-500"
+                        }
+                      `}
+                    />
+                    <CardTitle className="text-xl text-slate-900">{useCase.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600">{useCase.description}</p>
