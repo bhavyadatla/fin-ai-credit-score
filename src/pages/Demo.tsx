@@ -98,7 +98,7 @@ const Demo = () => {
                       placeholder="Enter your full name"
                       value={formData.name}
                       onChange={(e) => handleInputChange("name", e.target.value)}
-                      className="border-gray-300 focus:border-orange-500"
+                      className="border-gray-300 focus:border-orange-500 bg-white text-gray-900 placeholder-gray-400"
                     />
                   </div>
                   <div>
@@ -109,7 +109,7 @@ const Demo = () => {
                       placeholder="Enter your email"
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
-                      className="border-gray-300 focus:border-orange-500"
+                      className="border-gray-300 focus:border-orange-500 bg-white text-gray-900 placeholder-gray-400"
                     />
                   </div>
                   <div>
@@ -119,7 +119,7 @@ const Demo = () => {
                       placeholder="Enter your phone number"
                       value={formData.phone}
                       onChange={(e) => handleInputChange("phone", e.target.value)}
-                      className="border-gray-300 focus:border-orange-500"
+                      className="border-gray-300 focus:border-orange-500 bg-white text-gray-900 placeholder-gray-400"
                     />
                   </div>
                   <div>
@@ -129,7 +129,7 @@ const Demo = () => {
                       placeholder="City, Country"
                       value={formData.location}
                       onChange={(e) => handleInputChange("location", e.target.value)}
-                      className="border-gray-300 focus:border-orange-500"
+                      className="border-gray-300 focus:border-orange-500 bg-white text-gray-900 placeholder-gray-400"
                     />
                   </div>
                 </div>
@@ -165,7 +165,7 @@ const Demo = () => {
                       placeholder="Enter monthly income"
                       value={formData.income}
                       onChange={(e) => handleInputChange("income", e.target.value)}
-                      className="border-gray-300 focus:border-blue-500"
+                      className="border-gray-300 focus:border-blue-500 bg-white text-gray-900 placeholder-gray-400"
                     />
                   </div>
                   <div>
@@ -175,7 +175,7 @@ const Demo = () => {
                       placeholder="e.g., Employed, Self-employed, Student"
                       value={formData.employment}
                       onChange={(e) => handleInputChange("employment", e.target.value)}
-                      className="border-gray-300 focus:border-blue-500"
+                      className="border-gray-300 focus:border-blue-500 bg-white text-gray-900 placeholder-gray-400"
                     />
                   </div>
                 </div>
