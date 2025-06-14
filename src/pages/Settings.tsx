@@ -19,8 +19,8 @@ const Settings = () => {
   const { toast } = useToast();
   const [customThemeColors, setCustomThemeColors] = useState({
     primary: '#ea580c',
-    secondary: '#2563eb',
-    accent: '#059669',
+    secondary: '#f9ac56',
+    accent: '#fbbf24',
     background: '#ffffff',
   });
 
@@ -78,31 +78,31 @@ const Settings = () => {
     <DashboardLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-          <p className="text-gray-600">Customize your CreditAI experience</p>
+          <h1 className="text-3xl font-bold text-orange-700">Settings</h1>
+          <p className="text-orange-500">Customize your CreditAI experience</p>
         </div>
 
         {/* Theme Settings */}
-        <Card>
+        <Card className="bg-white border-orange-100 shadow-md rounded-xl">
           <CardHeader>
-            <CardTitle className="flex items-center">
+            <CardTitle className="flex items-center text-orange-700">
               <Palette className="h-5 w-5 mr-2 text-orange-600" />
               Theme & Appearance
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-orange-400">
               Customize how CreditAI looks and feels
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="theme">Theme</Label>
+              <Label htmlFor="theme" className="text-orange-800">Theme</Label>
               <Select value={theme} onValueChange={handleThemeChange}>
-                <SelectTrigger>
+                <SelectTrigger className="bg-white border-orange-200 focus:ring-orange-300">
                   <SelectValue placeholder="Select theme" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white border-orange-200 z-50">
                   {themeOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
+                    <SelectItem className="hover:bg-orange-50" key={option.value} value={option.value}>
                       {option.label}
                     </SelectItem>
                   ))}
@@ -111,87 +111,87 @@ const Settings = () => {
             </div>
 
             {theme === 'custom' && (
-              <div className="space-y-4 p-4 border rounded-lg bg-gray-50">
-                <h4 className="font-semibold text-gray-900">Custom Colors</h4>
+              <div className="space-y-4 p-4 border border-orange-200 rounded-lg bg-orange-50">
+                <h4 className="font-semibold text-orange-900">Custom Colors</h4>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="primary">Primary Color</Label>
+                    <Label htmlFor="primary" className="text-orange-700">Primary Color</Label>
                     <div className="flex space-x-2">
                       <Input
                         id="primary"
                         type="color"
                         value={customThemeColors.primary}
                         onChange={(e) => handleCustomColorChange('primary', e.target.value)}
-                        className="w-16 h-10 p-1 border rounded"
+                        className="w-16 h-10 p-1 border border-orange-200 rounded bg-white"
                       />
                       <Input
                         value={customThemeColors.primary}
                         onChange={(e) => handleCustomColorChange('primary', e.target.value)}
                         placeholder="#ea580c"
-                        className="flex-1"
+                        className="flex-1 border-orange-200"
                       />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="secondary">Secondary Color</Label>
+                    <Label htmlFor="secondary" className="text-orange-700">Secondary Color</Label>
                     <div className="flex space-x-2">
                       <Input
                         id="secondary"
                         type="color"
                         value={customThemeColors.secondary}
                         onChange={(e) => handleCustomColorChange('secondary', e.target.value)}
-                        className="w-16 h-10 p-1 border rounded"
+                        className="w-16 h-10 p-1 border border-orange-200 rounded bg-white"
                       />
                       <Input
                         value={customThemeColors.secondary}
                         onChange={(e) => handleCustomColorChange('secondary', e.target.value)}
-                        placeholder="#2563eb"
-                        className="flex-1"
+                        placeholder="#f9ac56"
+                        className="flex-1 border-orange-200"
                       />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="accent">Accent Color</Label>
+                    <Label htmlFor="accent" className="text-orange-700">Accent Color</Label>
                     <div className="flex space-x-2">
                       <Input
                         id="accent"
                         type="color"
                         value={customThemeColors.accent}
                         onChange={(e) => handleCustomColorChange('accent', e.target.value)}
-                        className="w-16 h-10 p-1 border rounded"
+                        className="w-16 h-10 p-1 border border-orange-200 rounded bg-white"
                       />
                       <Input
                         value={customThemeColors.accent}
                         onChange={(e) => handleCustomColorChange('accent', e.target.value)}
-                        placeholder="#059669"
-                        className="flex-1"
+                        placeholder="#fbbf24"
+                        className="flex-1 border-orange-200"
                       />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="background">Background Color</Label>
+                    <Label htmlFor="background" className="text-orange-700">Background Color</Label>
                     <div className="flex space-x-2">
                       <Input
                         id="background"
                         type="color"
                         value={customThemeColors.background}
                         onChange={(e) => handleCustomColorChange('background', e.target.value)}
-                        className="w-16 h-10 p-1 border rounded"
+                        className="w-16 h-10 p-1 border border-orange-200 rounded bg-white"
                       />
                       <Input
                         value={customThemeColors.background}
                         onChange={(e) => handleCustomColorChange('background', e.target.value)}
                         placeholder="#ffffff"
-                        className="flex-1"
+                        className="flex-1 border-orange-200"
                       />
                     </div>
                   </div>
                 </div>
                 
-                <Button onClick={saveCustomColors} className="w-full">
+                <Button onClick={saveCustomColors} className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700">
                   Apply Custom Colors
                 </Button>
               </div>
@@ -200,26 +200,26 @@ const Settings = () => {
         </Card>
 
         {/* Language Settings */}
-        <Card>
+        <Card className="bg-white border-orange-100 shadow-md rounded-xl">
           <CardHeader>
-            <CardTitle className="flex items-center">
-              <Globe className="h-5 w-5 mr-2 text-blue-600" />
+            <CardTitle className="flex items-center text-orange-700">
+              <Globe className="h-5 w-5 mr-2 text-orange-600" />
               Language & Region
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-orange-400">
               Change your language preferences
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <Label htmlFor="language">Language</Label>
+              <Label htmlFor="language" className="text-orange-800">Language</Label>
               <Select value={language} onValueChange={handleLanguageChange}>
-                <SelectTrigger>
+                <SelectTrigger className="bg-white border-orange-200 focus:ring-orange-300">
                   <SelectValue placeholder="Select language" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white border-orange-200 z-50">
                   {languageOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
+                    <SelectItem className="hover:bg-orange-50" key={option.value} value={option.value}>
                       {option.label}
                     </SelectItem>
                   ))}
@@ -230,13 +230,13 @@ const Settings = () => {
         </Card>
 
         {/* Notification Settings */}
-        <Card>
+        <Card className="bg-white border-orange-100 shadow-md rounded-xl">
           <CardHeader>
-            <CardTitle className="flex items-center">
-              <Bell className="h-5 w-5 mr-2 text-green-600" />
+            <CardTitle className="flex items-center text-orange-700">
+              <Bell className="h-5 w-5 mr-2 text-orange-600" />
               Notifications
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-orange-400">
               Manage your notification preferences
             </CardDescription>
           </CardHeader>
@@ -244,30 +244,30 @@ const Settings = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Score Updates</p>
-                  <p className="text-sm text-gray-500">Get notified when your credit score changes</p>
+                  <p className="font-medium text-orange-800">Score Updates</p>
+                  <p className="text-sm text-orange-400">Get notified when your credit score changes</p>
                 </div>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-orange-200 text-orange-700 hover:bg-orange-50">
                   Configure
                 </Button>
               </div>
               
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Monthly Reports</p>
-                  <p className="text-sm text-gray-500">Receive monthly credit report summaries</p>
+                  <p className="font-medium text-orange-800">Monthly Reports</p>
+                  <p className="text-sm text-orange-400">Receive monthly credit report summaries</p>
                 </div>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-orange-200 text-orange-700 hover:bg-orange-50">
                   Configure
                 </Button>
               </div>
               
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Security Alerts</p>
-                  <p className="text-sm text-gray-500">Important security and fraud alerts</p>
+                  <p className="font-medium text-orange-800">Security Alerts</p>
+                  <p className="text-sm text-orange-400">Important security and fraud alerts</p>
                 </div>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-orange-200 text-orange-700 hover:bg-orange-50">
                   Configure
                 </Button>
               </div>
@@ -276,13 +276,13 @@ const Settings = () => {
         </Card>
 
         {/* Security Settings */}
-        <Card>
+        <Card className="bg-white border-orange-100 shadow-md rounded-xl">
           <CardHeader>
-            <CardTitle className="flex items-center">
-              <Shield className="h-5 w-5 mr-2 text-red-600" />
+            <CardTitle className="flex items-center text-orange-700">
+              <Shield className="h-5 w-5 mr-2 text-orange-600" />
               Security & Privacy
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-orange-400">
               Manage your account security settings
             </CardDescription>
           </CardHeader>
@@ -290,30 +290,30 @@ const Settings = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Change Password</p>
-                  <p className="text-sm text-gray-500">Update your account password</p>
+                  <p className="font-medium text-orange-800">Change Password</p>
+                  <p className="text-sm text-orange-400">Update your account password</p>
                 </div>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-orange-200 text-orange-700 hover:bg-orange-50">
                   Change
                 </Button>
               </div>
               
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Two-Factor Authentication</p>
-                  <p className="text-sm text-gray-500">Add an extra layer of security</p>
+                  <p className="font-medium text-orange-800">Two-Factor Authentication</p>
+                  <p className="text-sm text-orange-400">Add an extra layer of security</p>
                 </div>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-orange-200 text-orange-700 hover:bg-orange-50">
                   Enable
                 </Button>
               </div>
               
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Delete Account</p>
-                  <p className="text-sm text-gray-500">Permanently delete your account and data</p>
+                  <p className="font-medium text-orange-800">Delete Account</p>
+                  <p className="text-sm text-orange-400">Permanently delete your account and data</p>
                 </div>
-                <Button variant="destructive" size="sm">
+                <Button variant="destructive" size="sm" className="bg-orange-500 border-orange-200 text-white hover:bg-orange-600">
                   Delete
                 </Button>
               </div>
