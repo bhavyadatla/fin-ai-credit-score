@@ -12,26 +12,42 @@ const HowItWorks = () => {
     {
       icon: Database,
       title: "Data Collection",
-      description: "We gather alternative data points from various sources including mobile usage, social media activity, transaction history, and more.",
-      color: "from-blue-500 to-blue-600"
+      description:
+        "We gather alternative data points from various sources including mobile usage, social media activity, transaction history, and more.",
+      bg: "bg-gradient-to-br from-orange-100 via-orange-50 to-white",
+      iconBg: "bg-orange-100",
+      iconColor: "text-orange-600",
+      border: "border-orange-100"
     },
     {
       icon: Brain,
       title: "AI Analysis",
-      description: "Our advanced machine learning algorithms analyze the data to identify patterns and creditworthiness indicators.",
-      color: "from-orange-500 to-orange-600"
+      description:
+        "Our advanced machine learning algorithms analyze the data to identify patterns and creditworthiness indicators.",
+      bg: "bg-gradient-to-br from-blue-100 via-white to-orange-50",
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600",
+      border: "border-blue-100"
     },
     {
       icon: BarChart3,
       title: "Score Generation",
-      description: "A comprehensive credit score is generated in real-time, providing instant assessment of credit risk.",
-      color: "from-green-500 to-green-600"
+      description:
+        "A comprehensive credit score is generated in real-time, providing instant assessment of credit risk.",
+      bg: "bg-gradient-to-br from-green-100 via-white to-blue-50",
+      iconBg: "bg-green-100",
+      iconColor: "text-green-600",
+      border: "border-green-100"
     },
     {
       icon: Shield,
       title: "Secure Delivery",
-      description: "The credit score and detailed report are securely delivered through our encrypted platform.",
-      color: "from-purple-500 to-purple-600"
+      description:
+        "The credit score and detailed report are securely delivered through our encrypted platform.",
+      bg: "bg-gradient-to-br from-purple-100 via-white to-blue-50",
+      iconBg: "bg-purple-100",
+      iconColor: "text-purple-600",
+      border: "border-purple-100"
     }
   ];
 
@@ -63,24 +79,35 @@ const HowItWorks = () => {
               How CreditAI Works
             </h1>
             <p className="text-xl text-slate-700 max-w-3xl mx-auto">
-              Discover how our AI-powered platform creates accurate credit scores using 
+              Discover how our AI-powered platform creates accurate credit scores using
               alternative data sources, making financial inclusion accessible to everyone.
             </p>
           </div>
 
           {/* Process Steps */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12 text-orange-800 animate-slide-in">The CreditAI Process</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-orange-800 animate-slide-in">
+              The CreditAI Process
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {steps.map((step, index) => (
                 <div key={index} className="relative">
-                  <Card className="h-full hover:shadow-lg transition-shadow hover-lift animate-scale-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <Card
+                    className={`h-full border transition-shadow hover:shadow-xl ${step.bg} ${step.border} shadow hover-lift animate-scale-in`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
                     <CardHeader className="text-center">
-                      <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center animate-bounce-custom`}>
-                        <step.icon className="h-8 w-8 text-white" />
+                      <div
+                        className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${step.iconBg} shadow-sm`}
+                      >
+                        <step.icon className={`h-8 w-8 ${step.iconColor}`} />
                       </div>
-                      <div className="text-lg font-bold text-slate-500 mb-2">Step {index + 1}</div>
-                      <CardTitle className="text-xl text-orange-800">{step.title}</CardTitle>
+                      <div className="text-base font-semibold text-slate-500 mb-2">
+                        Step {index + 1}
+                      </div>
+                      <CardTitle className="text-xl" style={{ color: "var(--orange-800)" }}>
+                        {step.title}
+                      </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-slate-700 text-center">{step.description}</p>
@@ -97,14 +124,20 @@ const HowItWorks = () => {
           {/* Alternative Data Points */}
           <div className="mb-16">
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 animate-fade-in">
-              <h2 className="text-3xl font-bold text-center mb-8 text-orange-800">Alternative Data Points We Analyze</h2>
+              <h2 className="text-3xl font-bold text-center mb-8 text-orange-800">
+                Alternative Data Points We Analyze
+              </h2>
               <p className="text-center text-slate-700 mb-8 max-w-3xl mx-auto">
-                Unlike traditional credit scoring that relies solely on credit history, we analyze 
+                Unlike traditional credit scoring that relies solely on credit history, we analyze
                 over 50 different data points to create a comprehensive picture of creditworthiness.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {dataPoints.map((point, index) => (
-                  <div key={index} className="flex items-center space-x-3 animate-slide-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div
+                    key={index}
+                    className="flex items-center space-x-3 animate-slide-in"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
                     <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
                     <span className="text-slate-700">{point}</span>
                   </div>
@@ -115,7 +148,9 @@ const HowItWorks = () => {
 
           {/* Technology Stack */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12 text-orange-800 animate-fade-in">Our Technology</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-orange-800 animate-fade-in">
+              Our Technology
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-0 shadow-lg hover-lift animate-scale-in">
                 <CardHeader>
@@ -123,31 +158,31 @@ const HowItWorks = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-blue-700">
-                    Advanced neural networks and ensemble models trained on millions of data points 
+                    Advanced neural networks and ensemble models trained on millions of data points
                     to predict creditworthiness with 95% accuracy.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border-0 shadow-lg hover-lift animate-scale-in" style={{ animationDelay: '0.2s' }}>
+              <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border-0 shadow-lg hover-lift animate-scale-in" style={{ animationDelay: "0.2s" }}>
                 <CardHeader>
                   <CardTitle className="text-xl text-orange-800">Real-time Processing</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-orange-700">
-                    Cloud-based infrastructure that processes credit assessments in real-time, 
+                    Cloud-based infrastructure that processes credit assessments in real-time,
                     providing instant results 24/7.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-green-50 to-green-100 border-0 shadow-lg hover-lift animate-scale-in" style={{ animationDelay: '0.4s' }}>
+              <Card className="bg-gradient-to-br from-green-50 to-green-100 border-0 shadow-lg hover-lift animate-scale-in" style={{ animationDelay: "0.4s" }}>
                 <CardHeader>
                   <CardTitle className="text-xl text-green-800">Data Security</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-green-700">
-                    Bank-grade encryption and security protocols ensure your data is protected 
+                    Bank-grade encryption and security protocols ensure your data is protected
                     with full GDPR and privacy compliance.
                   </p>
                 </CardContent>
@@ -171,8 +206,7 @@ const HowItWorks = () => {
       </div>
       <Footer />
     </div>
-  )
+  );
 };
 
 export default HowItWorks;
-
