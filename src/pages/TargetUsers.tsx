@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,39 +13,27 @@ const TargetUsers = () => {
       title: "Unbanked Population",
       description: "Individuals without access to traditional banking services",
       stats: "1.7 billion people globally",
-      color: "from-orange-500 to-orange-600",
-      challenges: [
-        "No traditional credit history",
-        "Limited access to financial institutions",
-        "Lack of required documentation",
-        "Geographic barriers"
-      ]
+      cardBg: "bg-gradient-to-br from-orange-50 via-white to-orange-100", // lighter
+      iconBg: "bg-orange-100",
+      iconColor: "text-orange-600"
     },
     {
       icon: Target,
       title: "Underbanked Communities",
       description: "People with limited access to financial products and services",
       stats: "2.5 billion people worldwide",
-      color: "from-blue-500 to-blue-600",
-      challenges: [
-        "Thin credit files",
-        "High-cost financial services",
-        "Limited product options",
-        "Discriminatory lending practices"
-      ]
+      cardBg: "bg-gradient-to-br from-blue-50 via-white to-blue-100", // lighter
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600"
     },
     {
       icon: Globe,
       title: "Emerging Market Populations",
       description: "Growing economies with developing financial infrastructure",
       stats: "85% of global population",
-      color: "from-green-500 to-green-600",
-      challenges: [
-        "Inadequate financial infrastructure",
-        "Currency volatility",
-        "Regulatory limitations",
-        "Technology adoption gaps"
-      ]
+      cardBg: "bg-gradient-to-br from-green-50 via-white to-green-100", // lighter
+      iconBg: "bg-green-100",
+      iconColor: "text-green-600"
     }
   ];
 
@@ -90,25 +77,56 @@ const TargetUsers = () => {
 
           {/* Target Groups */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Our Primary Target Groups</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-orange-800">
+              Our Primary Target Groups
+            </h2>
             <div className="space-y-8">
               {targetGroups.map((group, index) => (
-                <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow">
+                <Card key={index} className={`overflow-hidden hover:shadow-xl transition-shadow border-0 ${group.cardBg}`}>
                   <div className="flex flex-col lg:flex-row">
-                    <div className={`lg:w-1/3 bg-gradient-to-r ${group.color} p-8 text-white`}>
-                      <group.icon className="h-16 w-16 mb-4" />
-                      <h3 className="text-2xl font-bold mb-2">{group.title}</h3>
-                      <p className="text-lg opacity-90 mb-4">{group.description}</p>
-                      <Badge className="bg-white/20 text-white hover:bg-white/30">
+                    <div className="lg:w-1/3 flex flex-col items-center justify-center p-8">
+                      <span className={`inline-flex items-center justify-center rounded-full shadow ${group.iconBg} mb-4`} style={{ width: 70, height: 70 }}>
+                        <group.icon className={`h-10 w-10 ${group.iconColor}`} />
+                      </span>
+                      <h3 className="text-2xl font-bold mb-2 text-slate-900">{group.title}</h3>
+                      <p className="text-lg opacity-90 mb-4 text-slate-700">{group.description}</p>
+                      <Badge className="bg-white/80 text-slate-800 border border-orange-200 font-semibold">
                         {group.stats}
                       </Badge>
                     </div>
-                    <div className="lg:w-2/3 p-8">
-                      <h4 className="text-xl font-semibold mb-4 text-gray-800">Key Challenges</h4>
+                    <div className="lg:w-2/3 p-8 bg-white/60 rounded-lg">
+                      <h4 className="text-xl font-semibold mb-4 text-orange-700">Key Challenges</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {group.challenges.map((challenge, idx) => (
+                        {group.title === "Unbanked Population" && [
+                          "No traditional credit history",
+                          "Limited access to financial institutions",
+                          "Lack of required documentation",
+                          "Geographic barriers"
+                        ].map((challenge, idx) => (
                           <div key={idx} className="flex items-center space-x-3">
                             <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                            <span className="text-gray-700">{challenge}</span>
+                          </div>
+                        ))}
+                        {group.title === "Underbanked Communities" && [
+                          "Thin credit files",
+                          "High-cost financial services",
+                          "Limited product options",
+                          "Discriminatory lending practices"
+                        ].map((challenge, idx) => (
+                          <div key={idx} className="flex items-center space-x-3">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span className="text-gray-700">{challenge}</span>
+                          </div>
+                        ))}
+                        {group.title === "Emerging Market Populations" && [
+                          "Inadequate financial infrastructure",
+                          "Currency volatility",
+                          "Regulatory limitations",
+                          "Technology adoption gaps"
+                        ].map((challenge, idx) => (
+                          <div key={idx} className="flex items-center space-x-3">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                             <span className="text-gray-700">{challenge}</span>
                           </div>
                         ))}
