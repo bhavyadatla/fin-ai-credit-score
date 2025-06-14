@@ -83,41 +83,47 @@ const Dashboard = () => {
     <DashboardLayout>
       <div className="space-y-8 animate-fade-in">
         {/* Welcome Section with User Profile */}
-        <div className="flex items-center space-x-6 p-6 bg-gradient-to-r from-orange-100 to-blue-100 rounded-xl border animate-slide-in">
-          <Avatar className="h-20 w-20 hover-lift animate-bounce-custom">
+        <div className="flex items-center space-x-6 p-6 rounded-xl border bg-gradient-to-r from-orange-50 to-blue-50 border-gray-200">
+          <Avatar className="h-20 w-20">
             <AvatarImage src={profile?.avatar_url} className="object-cover" />
             <AvatarFallback className="bg-gradient-to-r from-orange-500 to-blue-600 text-white text-xl font-bold">
               {getUserInitials()}
             </AvatarFallback>
           </Avatar>
           <div className="flex-1">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">
-              {t('welcome')}, {getUserName()}! 
-              <Star className="inline-block h-8 w-8 text-yellow-500 ml-2 animate-bounce-custom" />
+            <h2 className="text-3xl font-bold text-gray-900 mb-2 flex items-center">
+              {t('welcome')}, {getUserName()}!
+              <Star className="inline-block h-8 w-8 text-yellow-400 ml-2" />
             </h2>
-            <p className="text-gray-600 text-lg">Here's your credit overview and recent activity.</p>
+            <p className="text-gray-500 text-lg">Here's your credit overview and recent activity.</p>
           </div>
         </div>
 
         {/* Credit Score Card */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <Card className="lg:col-span-2 bg-gradient-to-br from-orange-500 to-blue-600 text-white hover-lift animate-scale-in">
-            <CardHeader>
+          {/* Score */}
+          <Card className="lg:col-span-2 p-0 overflow-hidden shadow-md" style={{
+            background: "linear-gradient(105deg, #EA580C 0%, #2563EB 100%)",
+            color: "#fff",
+            border: 'none'
+          }}>
+            <CardHeader className="p-6 pb-3">
               <CardTitle className="text-white text-2xl">{t('creditScore')}</CardTitle>
               <CardDescription className="text-orange-100">
                 Updated 2 hours ago
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-6xl font-bold mb-2 animate-bounce-custom">{creditData.score}</div>
-                  <Badge className="bg-white/20 text-white hover:bg-white/30 animate-fade-in">
+            <CardContent className="p-6 pt-3">
+              <div className="flex flex-col lg:flex-row items-center justify-between">
+                <div className="flex-1 mb-6 lg:mb-0">
+                  <div className="text-6xl font-bold mb-2">{creditData.score}</div>
+                  <Badge className="bg-white/20 text-white font-bold px-4 py-2 rounded-lg">
                     {creditData.category}
                   </Badge>
                   <p className="text-orange-100 mt-2">Range: 740-799</p>
                 </div>
-                <div className="w-32 h-32 relative animate-scale-in" style={{ animationDelay: '0.3s' }}>
+                {/* Circular Progress */}
+                <div className="relative flex items-center justify-center w-32 h-32">
                   <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                     <circle
                       cx="50"
@@ -131,50 +137,54 @@ const Dashboard = () => {
                       cx="50"
                       cy="50"
                       r="40"
-                      stroke="white"
+                      stroke="#fff"
                       strokeWidth="8"
                       fill="transparent"
                       strokeDasharray={`${(creditData.score / 850) * 251.2} 251.2`}
-                      className="animate-fade-in"
-                      style={{ animationDelay: '0.5s' }}
+                      style={{ transition: "stroke-dasharray 0.6s" }}
                     />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-sm font-semibold">{Math.round((creditData.score / 850) * 100)}%</div>
-                    </div>
+                    <span className="text-xl font-semibold">{Math.round((creditData.score / 850) * 100)}%</span>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="hover-lift animate-scale-in" style={{ animationDelay: '0.2s' }}>
+          {/* Credit Factors */}
+          <Card className="bg-white shadow-md border border-gray-200">
             <CardHeader>
-              <CardTitle className="text-gray-800">Credit Factors</CardTitle>
+              <CardTitle className="text-orange-900">Credit Factors</CardTitle>
               <CardDescription>What affects your score</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="animate-slide-in" style={{ animationDelay: '0.3s' }}>
+              <div>
                 <div className="flex justify-between text-sm mb-1">
                   <span>Payment History</span>
                   <span className="text-green-600 font-semibold">Excellent</span>
                 </div>
-                <Progress value={95} className="h-2" />
+                <div className="w-full h-3 rounded-full bg-gray-200 overflow-hidden">
+                  <div className="h-3 rounded-full bg-orange-500" style={{ width: "95%" }} />
+                </div>
               </div>
-              <div className="animate-slide-in" style={{ animationDelay: '0.4s' }}>
+              <div>
                 <div className="flex justify-between text-sm mb-1">
                   <span>Credit Utilization</span>
                   <span className="text-orange-600 font-semibold">Good</span>
                 </div>
-                <Progress value={75} className="h-2" />
+                <div className="w-full h-3 rounded-full bg-gray-200 overflow-hidden">
+                  <div className="h-3 rounded-full bg-orange-500" style={{ width: "75%" }} />
+                </div>
               </div>
-              <div className="animate-slide-in" style={{ animationDelay: '0.5s' }}>
+              <div>
                 <div className="flex justify-between text-sm mb-1">
                   <span>Credit Age</span>
                   <span className="text-blue-600 font-semibold">Very Good</span>
                 </div>
-                <Progress value={85} className="h-2" />
+                <div className="w-full h-3 rounded-full bg-gray-200 overflow-hidden">
+                  <div className="h-3 rounded-full bg-orange-500" style={{ width: "85%" }} />
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -182,42 +192,45 @@ const Dashboard = () => {
 
         {/* Additional Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card className="hover-lift animate-scale-in" style={{ animationDelay: '0.3s' }}>
+          {/* Score Trend */}
+          <Card className="shadow-md border border-gray-200 bg-white">
             <CardHeader>
-              <CardTitle className="flex items-center text-gray-800">
-                <TrendingUp className="h-5 w-5 mr-2 text-green-600 animate-bounce-custom" />
+              <CardTitle className="flex items-center text-gray-900">
+                <TrendingUp className="h-5 w-5 mr-2 text-green-600" />
                 Score Trend
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-600 mb-2">+{creditData.trend} points</div>
-              <p className="text-sm text-gray-600">In the last 3 months</p>
+              <div className="text-2xl font-bold text-green-600 mb-2">
+                +{creditData.trend} points
+              </div>
+              <span className="text-sm text-gray-600">In the last 3 months</span>
             </CardContent>
           </Card>
-
-          <Card className="hover-lift animate-scale-in" style={{ animationDelay: '0.4s' }}>
+          {/* Credit Accounts */}
+          <Card className="shadow-md border border-gray-200 bg-white">
             <CardHeader>
-              <CardTitle className="flex items-center text-gray-800">
-                <CreditCard className="h-5 w-5 mr-2 text-blue-600 animate-bounce-custom" />
+              <CardTitle className="flex items-center text-gray-900">
+                <CreditCard className="h-5 w-5 mr-2 text-blue-600" />
                 Credit Accounts
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold mb-2 text-gray-800">{creditData.accounts}</div>
-              <p className="text-sm text-gray-600">Active accounts</p>
+              <div className="text-2xl font-bold text-gray-900 mb-2">{creditData.accounts}</div>
+              <span className="text-sm text-gray-600">Active accounts</span>
             </CardContent>
           </Card>
-
-          <Card className="hover-lift animate-scale-in" style={{ animationDelay: '0.5s' }}>
+          {/* Alerts */}
+          <Card className="shadow-md border border-gray-200 bg-white">
             <CardHeader>
-              <CardTitle className="flex items-center text-gray-800">
-                <Bell className="h-5 w-5 mr-2 text-orange-600 animate-bounce-custom" />
+              <CardTitle className="flex items-center text-gray-900">
+                <Bell className="h-5 w-5 mr-2 text-orange-500" />
                 Alerts
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold mb-2 text-gray-800">{creditData.alerts}</div>
-              <p className="text-sm text-gray-600">New notifications</p>
+              <div className="text-2xl font-bold text-orange-500 mb-2">{creditData.alerts}</div>
+              <span className="text-sm text-gray-600">New notifications</span>
             </CardContent>
           </Card>
         </div>
@@ -227,3 +240,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
