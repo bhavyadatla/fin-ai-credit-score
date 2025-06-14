@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, CheckCircle, Phone, Mail, MapPin, User } from "lucide-react";
-import CreditScoreGauge from "@/components/CreditScoreGauge";
 
 const Demo = () => {
   const [step, setStep] = useState(1);
@@ -249,9 +248,8 @@ const Demo = () => {
                   </div>
                 ) : (
                   <div className="py-8">
-                    {/* Credit Score Gauge Visualization */}
                     <div className="mb-8 animate-bounce-custom">
-                      <CreditScoreGauge score={creditScore} />
+                      <div className="text-6xl font-bold text-gray-800 mb-2">{creditScore}</div>
                       <Badge className={`${scoreInfo.color} bg-transparent border-current text-lg px-4 py-2`}>
                         {scoreInfo.category}
                       </Badge>
