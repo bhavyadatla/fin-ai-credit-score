@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -72,12 +71,12 @@ const ImageUpload = ({ currentImage, onImageUpdate, fallbackText, size = 'lg' }:
       <div className="relative group">
         <Avatar className={`${sizeClasses[size]} hover-lift cursor-pointer transition-all duration-300`}>
           <AvatarImage src={currentImage} className="object-cover" />
-          <AvatarFallback className="bg-gradient-to-r from-orange-500 to-blue-600 text-white text-lg font-semibold">
+          <AvatarFallback className="bg-gradient-to-r from-orange-500 to-orange-600 text-white text-lg font-semibold">
             {fallbackText}
           </AvatarFallback>
         </Avatar>
         <div 
-          className="absolute inset-0 bg-gray-900/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"
+          className="absolute inset-0 bg-orange-500/70 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"
           onClick={() => fileInputRef.current?.click()}
         >
           <Camera className="h-6 w-6 text-white" />
@@ -86,18 +85,15 @@ const ImageUpload = ({ currentImage, onImageUpdate, fallbackText, size = 'lg' }:
       
       <div className="space-y-2">
         <Button 
-          type="button" 
-          variant="outline" 
+          type="button"
           onClick={() => fileInputRef.current?.click()}
           disabled={uploading}
-          className="hover-lift"
+          className="border-2 border-orange-500 text-orange-600 bg-white hover:bg-orange-50 hover:text-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:border-orange-600 transition-all font-semibold px-4 py-2 rounded-lg"
         >
           <Upload className="h-4 w-4 mr-2" />
           {uploading ? 'Uploading...' : 'Change Photo'}
         </Button>
-        <p className="text-sm text-muted-foreground">
-          JPG, PNG or GIF. Max 2MB.
-        </p>
+        <p className="text-sm text-orange-400">JPG, PNG or GIF. Max 2MB.</p>
       </div>
       
       <input

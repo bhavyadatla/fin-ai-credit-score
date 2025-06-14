@@ -120,7 +120,7 @@ const Profile = () => {
             <p className="text-orange-500 text-lg">Manage your account information</p>
           </div>
 
-          <Card className="shadow-xl rounded-2xl border border-orange-100 bg-white">
+          <Card className="shadow-xl rounded-2xl border border-orange-200 bg-white">
             <CardHeader>
               <CardTitle className="text-lg md:text-2xl text-orange-600 font-extrabold">Personal Information</CardTitle>
               <CardDescription className="text-orange-400">
@@ -209,3 +209,4 @@ const Profile = () => {
 };
 
 export default Profile;
+
