@@ -9,7 +9,194 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      credit_reports: {
+        Row: {
+          created_at: string | null
+          credit_age: Json | null
+          credit_mix: Json | null
+          credit_utilization: Json | null
+          id: string
+          new_credit: Json | null
+          payment_history: Json | null
+          report_date: string
+          score: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          credit_age?: Json | null
+          credit_mix?: Json | null
+          credit_utilization?: Json | null
+          id?: string
+          new_credit?: Json | null
+          payment_history?: Json | null
+          report_date?: string
+          score: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          credit_age?: Json | null
+          credit_mix?: Json | null
+          credit_utilization?: Json | null
+          id?: string
+          new_credit?: Json | null
+          payment_history?: Json | null
+          report_date?: string
+          score?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "credit_reports_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      documents: {
+        Row: {
+          file_size: number | null
+          file_url: string
+          id: string
+          name: string
+          type: string
+          uploaded_at: string | null
+          user_id: string
+        }
+        Insert: {
+          file_size?: number | null
+          file_url: string
+          id?: string
+          name: string
+          type: string
+          uploaded_at?: string | null
+          user_id: string
+        }
+        Update: {
+          file_size?: number | null
+          file_url?: string
+          id?: string
+          name?: string
+          type?: string
+          uploaded_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "documents_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          email: string | null
+          first_name: string | null
+          id: string
+          last_name: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          first_name?: string | null
+          id: string
+          last_name?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      score_history: {
+        Row: {
+          change_amount: number | null
+          created_at: string | null
+          id: string
+          score: number
+          score_date: string
+          user_id: string
+        }
+        Insert: {
+          change_amount?: number | null
+          created_at?: string | null
+          id?: string
+          score: number
+          score_date: string
+          user_id: string
+        }
+        Update: {
+          change_amount?: number | null
+          created_at?: string | null
+          id?: string
+          score?: number
+          score_date?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "score_history_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_settings: {
+        Row: {
+          created_at: string | null
+          custom_theme_colors: Json | null
+          id: string
+          language: string | null
+          theme: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          custom_theme_colors?: Json | null
+          id?: string
+          language?: string | null
+          theme?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          custom_theme_colors?: Json | null
+          id?: string
+          language?: string | null
+          theme?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_settings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
