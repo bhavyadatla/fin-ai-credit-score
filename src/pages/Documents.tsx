@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -113,7 +112,8 @@ const Documents = () => {
   };
 
   const getFileIcon = (type: string) => {
-    return <FileText className="h-8 w-8 text-blue-600" />;
+    // Color all file icons orange
+    return <FileText className="h-8 w-8 text-orange-500" />;
   };
 
   if (loading) {
@@ -131,8 +131,8 @@ const Documents = () => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Documents</h1>
-            <p className="text-gray-600">Manage your financial documents</p>
+            <h1 className="text-3xl font-bold text-orange-700">Documents</h1>
+            <p className="text-orange-500">Manage your financial documents</p>
           </div>
           
           <div className="relative">
@@ -147,7 +147,7 @@ const Documents = () => {
             <Button
               onClick={() => document.getElementById('file-upload')?.click()}
               disabled={uploading}
-              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
+              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
             >
               <Plus className="h-4 w-4 mr-2" />
               {uploading ? 'Uploading...' : 'Upload Document'}
@@ -156,21 +156,21 @@ const Documents = () => {
         </div>
 
         {/* Upload Area */}
-        <Card>
+        <Card className="bg-white border-orange-200 shadow-lg rounded-xl">
           <CardHeader>
-            <CardTitle className="flex items-center">
-              <Upload className="h-5 w-5 mr-2 text-orange-600" />
+            <CardTitle className="flex items-center text-orange-600">
+              <Upload className="h-5 w-5 mr-2 text-orange-500" />
               Upload New Document
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-orange-400">
               Upload financial documents like bank statements, tax forms, or credit reports
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600 mb-2">Click the upload button above or drag files here</p>
-              <p className="text-sm text-gray-500">
+            <div className="border-2 border-dashed border-orange-200 rounded-lg p-8 text-center bg-orange-50">
+              <Upload className="h-12 w-12 text-orange-300 mx-auto mb-4" />
+              <p className="text-orange-600 mb-2">Click the upload button above or drag files here</p>
+              <p className="text-sm text-orange-400">
                 Supports: PDF, DOC, DOCX, JPG, PNG (Max 10MB)
               </p>
             </div>
@@ -181,7 +181,7 @@ const Documents = () => {
         {documents.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {documents.map((doc) => (
-              <Card key={doc.id}>
+              <Card key={doc.id} className="bg-white border-orange-200 shadow-md rounded-xl">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     {getFileIcon(doc.type)}
@@ -189,23 +189,27 @@ const Documents = () => {
                       variant="ghost"
                       size="sm"
                       onClick={() => handleDelete(doc.id)}
-                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      className="text-orange-500 hover:text-orange-700 hover:bg-orange-50"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
                   </div>
                   
-                  <h3 className="font-semibold text-gray-900 mb-2 truncate">
+                  <h3 className="font-semibold text-orange-700 mb-2 truncate">
                     {doc.name}
                   </h3>
                   
-                  <div className="space-y-1 text-sm text-gray-500">
+                  <div className="space-y-1 text-sm text-orange-400">
                     <p>Size: {formatFileSize(doc.file_size)}</p>
                     <p>Uploaded: {new Date(doc.uploaded_at).toLocaleDateString()}</p>
                   </div>
                   
                   <div className="mt-4 flex space-x-2">
-                    <Button variant="outline" size="sm" className="flex-1">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="flex-1 border-orange-300 text-orange-600 hover:bg-orange-50"
+                    >
                       <Download className="h-4 w-4 mr-1" />
                       Download
                     </Button>
@@ -215,12 +219,12 @@ const Documents = () => {
             ))}
           </div>
         ) : (
-          <Card>
+          <Card className="bg-white border-orange-100 shadow-md rounded-xl">
             <CardContent className="flex items-center justify-center h-64">
               <div className="text-center">
-                <FileText className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-500 mb-4">No documents uploaded yet</p>
-                <p className="text-sm text-gray-400">Upload your first document to get started</p>
+                <FileText className="h-16 w-16 text-orange-100 mx-auto mb-4" />
+                <p className="text-orange-400 mb-4">No documents uploaded yet</p>
+                <p className="text-sm text-orange-200">Upload your first document to get started</p>
               </div>
             </CardContent>
           </Card>
