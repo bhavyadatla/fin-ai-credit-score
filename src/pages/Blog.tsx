@@ -155,7 +155,12 @@ const Blog = () => {
                       <Calendar className="h-4 w-4" />
                       <span>{post.date}</span>
                     </div>
-                    <Button variant="outline" size="sm" className="border-gray-300 text-gray-700 hover:bg-gray-50">
+                    {/* Custom-styled Read More button for cards */}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-orange-500 text-orange-600 bg-white hover:bg-orange-500 hover:text-white hover:border-orange-600 transition-colors rounded-md shadow-none"
+                    >
                       Read More
                     </Button>
                   </div>
