@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { CalendarDays } from "lucide-react";
 import { format } from "date-fns";
+import type { DateRange } from "react-day-picker";
 
 const PERIODS = [
   { value: "7d", label: "Last 7 days" },
@@ -18,21 +19,27 @@ const PERIODS = [
 ];
 
 interface ScorePeriodSelectorProps {
-  value: { period: string, dateRange?: { from?: Date; to?: Date } };
-  onChange: (value: { period: string, dateRange?: { from?: Date; to?: Date } }) => void;
+  value: { period: string, dateRange?: DateRange };
+  onChange: (value: { period: string, dateRange?: DateRange }) => void;
 }
 
 const ScorePeriodSelector: React.FC<ScorePeriodSelectorProps> = ({ value, onChange }) => {
-  const [customRange, setCustomRange] = useState<{ from?: Date; to?: Date }>(value.dateRange || {});
+  // type DateRange = { from: Date; to?: Date } | undefined;
+  const [customRange, setCustomRange] = useState<DateRange | undefined>(
+    value.period === "custom" && value.dateRange && value.dateRange.from
+      ? value.dateRange
+      : undefined
+  );
 
   const handlePeriodChange = (period: string) => {
     if (period === "custom") return;
+    setCustomRange(undefined);
     onChange({ period });
   };
 
-  const handleCustomDateChange = (range: { from?: Date; to?: Date }) => {
-    setCustomRange(range);
-    if (range.from && range.to) {
+  const handleCustomDateChange = (range: DateRange | undefined) => {
+    setCustomRange(range && range.from ? range : undefined);
+    if (range && range.from && range.to) {
       onChange({ period: "custom", dateRange: range });
     }
   };
@@ -67,7 +74,7 @@ const ScorePeriodSelector: React.FC<ScorePeriodSelectorProps> = ({ value, onChan
             variant="outline"
           >
             <CalendarDays className="h-4 w-4 mr-1 text-orange-700" />
-            {customRange.from && customRange.to
+            {customRange && customRange.from && customRange.to
               ? `${format(customRange.from, "MMM d")} - ${format(customRange.to, "MMM d, yyyy")}`
               : "Pick date range"}
           </Button>
@@ -76,9 +83,7 @@ const ScorePeriodSelector: React.FC<ScorePeriodSelectorProps> = ({ value, onChan
           <Calendar
             mode="range"
             selected={customRange}
-            onSelect={(range) => {
-              if (range) handleCustomDateChange(range);
-            }}
+            onSelect={handleCustomDateChange}
             numberOfMonths={2}
             className="p-3 pointer-events-auto"
           />
@@ -88,3 +93,4 @@ const ScorePeriodSelector: React.FC<ScorePeriodSelectorProps> = ({ value, onChan
   );
 };
 export default ScorePeriodSelector;
+
