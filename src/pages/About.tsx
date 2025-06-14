@@ -52,12 +52,18 @@ const About = () => {
 
           {/* Key Features - cards re-designed */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12 text-orange-800 animate-fade-in">Why Choose CreditAI?</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-orange-800 animate-fade-in">
+              Why Choose CreditAI?
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* AI-Powered Intelligence */}
-              <Card className="text-center bg-gradient-to-br from-orange-50 to-white border-0 shadow-md hover:shadow-lg hover-lift animate-scale-in transition-all duration-200">
+              <Card className="text-center border-0 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-200 bg-gradient-to-br from-orange-50 via-white to-orange-100">
                 <CardHeader>
-                  <Brain className="h-16 w-16 text-orange-600 mx-auto mb-4 animate-float" />
+                  <div className="flex justify-center items-center mb-4">
+                    <span className="inline-flex items-center justify-center rounded-full bg-orange-100 shadow animate-float" style={{ width: 66, height: 66 }}>
+                      <Brain className="h-12 w-12 text-orange-600" />
+                    </span>
+                  </div>
                   <CardTitle className="text-orange-800">AI-Powered Intelligence</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -69,9 +75,13 @@ const About = () => {
               </Card>
 
               {/* Bank-Grade Security */}
-              <Card className="text-center bg-gradient-to-br from-blue-50 to-white border-0 shadow-md hover:shadow-lg hover-lift animate-scale-in transition-all duration-200" style={{ animationDelay: '0.2s' }}>
+              <Card className="text-center border-0 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-200 bg-gradient-to-br from-blue-50 via-white to-blue-100" style={{ animationDelay: "0.2s" }}>
                 <CardHeader>
-                  <Shield className="h-16 w-16 text-blue-600 mx-auto mb-4 animate-float" />
+                  <div className="flex justify-center items-center mb-4">
+                    <span className="inline-flex items-center justify-center rounded-full bg-blue-100 shadow animate-float" style={{ width: 66, height: 66 }}>
+                      <Shield className="h-12 w-12 text-blue-600" />
+                    </span>
+                  </div>
                   <CardTitle className="text-blue-800">Bank-Grade Security</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -83,9 +93,13 @@ const About = () => {
               </Card>
 
               {/* Proven Results */}
-              <Card className="text-center bg-gradient-to-br from-green-50 to-white border-0 shadow-md hover:shadow-lg hover-lift animate-scale-in transition-all duration-200" style={{ animationDelay: '0.4s' }}>
+              <Card className="text-center border-0 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-200 bg-gradient-to-br from-green-50 via-white to-green-100" style={{ animationDelay: "0.4s" }}>
                 <CardHeader>
-                  <Award className="h-16 w-16 text-green-600 mx-auto mb-4 animate-float" />
+                  <div className="flex justify-center items-center mb-4">
+                    <span className="inline-flex items-center justify-center rounded-full bg-green-100 shadow animate-float" style={{ width: 66, height: 66 }}>
+                      <Award className="h-12 w-12 text-green-600" />
+                    </span>
+                  </div>
                   <CardTitle className="text-green-800">Proven Results</CardTitle>
                 </CardHeader>
                 <CardContent>
