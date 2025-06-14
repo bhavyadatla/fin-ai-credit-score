@@ -56,7 +56,7 @@ const Profile = () => {
 
   const handleImageUpdate = async (imageUrl: string) => {
     setProfile(prev => ({ ...prev, avatar_url: imageUrl }));
-    
+
     if (!user) return;
 
     const { error } = await supabase
@@ -106,103 +106,105 @@ const Profile = () => {
   };
 
   const getInitials = () => {
-    return `${profile.first_name.charAt(0)}${profile.last_name.charAt(0)}`.toUpperCase();
+    return `${profile.first_name.charAt(0)}${profile.last_name.charAt(0)}`.toUpperCase() || 'UN';
   };
 
   return (
     <DashboardLayout>
-      <div className="space-y-6 animate-fade-in">
-        <div className="animate-slide-in">
-          <h1 className="text-3xl font-bold text-gray-800">Profile</h1>
-          <p className="text-gray-600">Manage your account information</p>
+      <div className="min-h-screen bg-gradient-to-br from-white via-orange-50 to-blue-50 py-8 px-2 md:px-0 animate-fade-in">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900">Profile</h1>
+            <p className="text-gray-600 text-lg">Manage your account information</p>
+          </div>
+
+          <Card className="shadow-xl rounded-2xl border-0 bg-[#181616] text-white" style={{ background: "#181616" }}>
+            <CardHeader>
+              <CardTitle className="text-lg md:text-2xl text-white">Personal Information</CardTitle>
+              <CardDescription className="text-gray-400">
+                Update your personal details here
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <ImageUpload
+                  currentImage={profile.avatar_url}
+                  onImageUpdate={handleImageUpdate}
+                  fallbackText={getInitials() || 'UN'}
+                  size="xl"
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="first_name" className="text-base text-gray-200">First Name</Label>
+                    <div className="relative">
+                      <Input
+                        id="first_name"
+                        name="first_name"
+                        value={profile.first_name}
+                        onChange={handleInputChange}
+                        placeholder="Enter your first name"
+                        className="bg-[#272525] border border-[#343232] text-white placeholder:text-gray-400 pl-10"
+                      />
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="last_name" className="text-base text-gray-200">Last Name</Label>
+                    <Input
+                      id="last_name"
+                      name="last_name"
+                      value={profile.last_name}
+                      onChange={handleInputChange}
+                      placeholder="Enter your last name"
+                      className="bg-[#272525] border border-[#343232] text-white placeholder:text-gray-400"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-base text-gray-200">Email</Label>
+                    <div className="relative">
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={profile.email}
+                        onChange={handleInputChange}
+                        placeholder="Enter your email"
+                        className="bg-[#272525] border border-[#343232] text-white placeholder:text-gray-400 pl-10"
+                      />
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-base text-gray-200">Member Since</Label>
+                    <div className="relative">
+                      <Input
+                        value={user?.created_at ? new Date(user.created_at).toLocaleDateString() : ''}
+                        disabled
+                        className="bg-[#272525] border border-[#343232] text-white placeholder:text-gray-400 pl-10"
+                      />
+                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-end">
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-gradient-to-r from-orange-500 to-orange-600 text-white transition-colors rounded-lg px-8 py-2 text-lg font-semibold hover:from-orange-600 hover:to-orange-700"
+                  >
+                    {loading ? 'Saving...' : 'Save Changes'}
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
         </div>
-
-        <Card className="hover-lift animate-scale-in">
-          <CardHeader>
-            <CardTitle className="text-gray-800">Personal Information</CardTitle>
-            <CardDescription>Update your personal details here</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <ImageUpload
-                currentImage={profile.avatar_url}
-                onImageUpdate={handleImageUpdate}
-                fallbackText={getInitials() || 'UN'}
-                size="xl"
-              />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2 animate-slide-in" style={{ animationDelay: '0.1s' }}>
-                  <Label htmlFor="first_name">First Name</Label>
-                  <div className="relative">
-                    <Input
-                      id="first_name"
-                      name="first_name"
-                      value={profile.first_name}
-                      onChange={handleInputChange}
-                      placeholder="Enter your first name"
-                      className="pl-10 hover-lift"
-                    />
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  </div>
-                </div>
-
-                <div className="space-y-2 animate-slide-in" style={{ animationDelay: '0.2s' }}>
-                  <Label htmlFor="last_name">Last Name</Label>
-                  <Input
-                    id="last_name"
-                    name="last_name"
-                    value={profile.last_name}
-                    onChange={handleInputChange}
-                    placeholder="Enter your last name"
-                    className="hover-lift"
-                  />
-                </div>
-
-                <div className="space-y-2 animate-slide-in" style={{ animationDelay: '0.3s' }}>
-                  <Label htmlFor="email">Email</Label>
-                  <div className="relative">
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={profile.email}
-                      onChange={handleInputChange}
-                      placeholder="Enter your email"
-                      className="pl-10 hover-lift"
-                    />
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  </div>
-                </div>
-
-                <div className="space-y-2 animate-slide-in" style={{ animationDelay: '0.4s' }}>
-                  <Label>Member Since</Label>
-                  <div className="relative">
-                    <Input
-                      value={user?.created_at ? new Date(user.created_at).toLocaleDateString() : ''}
-                      disabled
-                      className="pl-10"
-                    />
-                    <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-end animate-slide-in" style={{ animationDelay: '0.5s' }}>
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 hover-lift"
-                >
-                  {loading ? 'Saving...' : 'Save Changes'}
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
       </div>
     </DashboardLayout>
   );
 };
 
 export default Profile;
+
