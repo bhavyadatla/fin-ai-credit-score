@@ -126,7 +126,11 @@ const Blog = () => {
           {/* Blog Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.slice(1).map((post, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow hover-lift animate-scale-in" style={{ animationDelay: `${index * 0.1}s` }}>
+              <Card
+                key={index}
+                className="bg-white border border-gray-200 hover:shadow-lg transition-shadow hover-lift animate-scale-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <CardHeader>
                   <Badge className="w-fit mb-2 bg-blue-100 text-blue-800">
                     {post.category}
