@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -80,10 +79,13 @@ const Demo = () => {
 
           {/* Step 1: Basic Information */}
           {step === 1 && (
-            <Card className="shadow-xl hover-lift animate-scale-in">
+            <Card
+              className="shadow-xl hover-lift animate-scale-in bg-white rounded-xl border-0 transition"
+              style={{ borderTop: "4px solid #fb923c" /* orange-400 */ }}
+            >
               <CardHeader>
-                <CardTitle className="flex items-center text-gray-800">
-                  <User className="h-6 w-6 mr-2 text-orange-600 animate-bounce-custom" />
+                <CardTitle className="flex items-center text-slate-900">
+                  <User className="h-6 w-6 mr-2 text-orange-500 animate-bounce-custom" />
                   Basic Information
                 </CardTitle>
               </CardHeader>
@@ -144,10 +146,13 @@ const Demo = () => {
 
           {/* Step 2: Financial Information */}
           {step === 2 && (
-            <Card className="shadow-xl hover-lift animate-scale-in">
+            <Card
+              className="shadow-xl hover-lift animate-scale-in bg-white rounded-xl border-0 transition"
+              style={{ borderTop: "4px solid #3b82f6" /* blue-500 */ }}
+            >
               <CardHeader>
-                <CardTitle className="flex items-center text-gray-800">
-                  <MapPin className="h-6 w-6 mr-2 text-blue-600 animate-bounce-custom" />
+                <CardTitle className="flex items-center text-slate-900">
+                  <MapPin className="h-6 w-6 mr-2 text-blue-500 animate-bounce-custom" />
                   Financial Information
                 </CardTitle>
               </CardHeader>
@@ -187,9 +192,14 @@ const Demo = () => {
 
           {/* Step 3: Consent & Privacy */}
           {step === 3 && (
-            <Card className="shadow-xl hover-lift animate-scale-in">
+            <Card
+              className="shadow-xl hover-lift animate-scale-in bg-white rounded-xl border-0 transition"
+              style={{ borderTop: "4px solid #22c55e" /* green-500 */ }}
+            >
               <CardHeader>
-                <CardTitle className="text-gray-800">Data Consent & Privacy</CardTitle>
+                <CardTitle className="text-slate-900">
+                  Data Consent & Privacy
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="bg-blue-50 p-4 rounded-lg animate-slide-in">
@@ -222,14 +232,17 @@ const Demo = () => {
 
           {/* Step 4: Processing/Results */}
           {step === 4 && (
-            <Card className="shadow-xl hover-lift animate-scale-in">
+            <Card
+              className="shadow-xl hover-lift animate-scale-in bg-white rounded-xl border-0 transition"
+              style={{ borderTop: "4px solid #f59e42" /* soft orange-300 for result card */ }}
+            >
               <CardHeader>
-                <CardTitle className="text-gray-800">Your Credit Assessment</CardTitle>
+                <CardTitle className="text-slate-900">Your Credit Assessment</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
                 {loading ? (
                   <div className="py-12">
-                    <Loader2 className="h-16 w-16 animate-spin mx-auto text-orange-600 mb-4" />
+                    <Loader2 className="h-16 w-16 animate-spin mx-auto text-orange-500 mb-4" />
                     <h3 className="text-xl font-semibold mb-2 text-gray-800">Analyzing Your Data...</h3>
                     <p className="text-gray-600">Our AI is processing over 50 data points</p>
                   </div>
@@ -243,40 +256,40 @@ const Demo = () => {
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                      <div className="bg-orange-50 p-4 rounded-lg animate-scale-in">
+                      <div className="bg-orange-50 p-4 rounded-lg animate-scale-in border-t-4 border-orange-300">
                         <h4 className="font-semibold text-orange-800 mb-2">Payment Prediction</h4>
-                        <div className="text-2xl font-bold text-orange-600">95%</div>
+                        <div className="text-2xl font-bold text-orange-500">95%</div>
                         <p className="text-sm text-orange-700">Likely to pay on time</p>
                       </div>
-                      <div className="bg-blue-50 p-4 rounded-lg animate-scale-in" style={{ animationDelay: '0.2s' }}>
+                      <div className="bg-blue-50 p-4 rounded-lg animate-scale-in border-t-4 border-blue-300" style={{ animationDelay: '0.2s' }}>
                         <h4 className="font-semibold text-blue-800 mb-2">Risk Level</h4>
-                        <div className="text-2xl font-bold text-blue-600">Low</div>
+                        <div className="text-2xl font-bold text-blue-500">Low</div>
                         <p className="text-sm text-blue-700">Based on AI analysis</p>
                       </div>
-                      <div className="bg-green-50 p-4 rounded-lg animate-scale-in" style={{ animationDelay: '0.4s' }}>
+                      <div className="bg-green-50 p-4 rounded-lg animate-scale-in border-t-4 border-green-300" style={{ animationDelay: '0.4s' }}>
                         <h4 className="font-semibold text-green-800 mb-2">Confidence</h4>
-                        <div className="text-2xl font-bold text-green-600">92%</div>
+                        <div className="text-2xl font-bold text-green-500">92%</div>
                         <p className="text-sm text-green-700">Model accuracy</p>
                       </div>
                     </div>
 
-                    <div className="bg-gray-50 p-6 rounded-lg text-left animate-fade-in">
+                    <div className="bg-gray-50 p-6 rounded-lg text-left animate-fade-in border-t-4 border-orange-100">
                       <h4 className="font-semibold mb-4 text-gray-800">What influenced your score:</h4>
                       <div className="space-y-2 text-sm">
                         <div className="flex items-center">
-                          <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                          <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                           <span className="text-gray-700">Strong employment history pattern</span>
                         </div>
                         <div className="flex items-center">
-                          <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                          <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                           <span className="text-gray-700">Consistent digital engagement</span>
                         </div>
                         <div className="flex items-center">
-                          <CheckCircle className="h-4 w-4 text-blue-600 mr-2" />
+                          <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                           <span className="text-gray-700">Stable location history</span>
                         </div>
                         <div className="flex items-center">
-                          <CheckCircle className="h-4 w-4 text-orange-600 mr-2" />
+                          <CheckCircle className="h-4 w-4 text-orange-400 mr-2" />
                           <span className="text-gray-700">Positive alternative data signals</span>
                         </div>
                       </div>
