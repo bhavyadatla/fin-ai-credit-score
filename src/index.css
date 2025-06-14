@@ -45,6 +45,12 @@
     --sidebar-accent-foreground: 71 40% 20%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 25 95% 53%;
+
+    /* Custom color variables for better design */
+    --card-bg: 248 250 252;
+    --text-primary: 71 40% 20%;
+    --text-secondary: 100 7% 23%;
+    --text-muted: 215.4 16.3% 46.9%;
   }
 
   .dark {
@@ -83,6 +89,12 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 25 95% 53%;
+
+    /* Dark mode custom colors */
+    --card-bg: 217.2 32.6% 17.5%;
+    --text-primary: 210 40% 98%;
+    --text-secondary: 210 40% 90%;
+    --text-muted: 215 20.2% 65.1%;
   }
 }
 
@@ -145,6 +157,24 @@
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out;
 }
@@ -161,11 +191,49 @@
   animation: bounce 2s infinite;
 }
 
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
 .hover-lift {
   transition: all 0.3s ease;
 }
 
 .hover-lift:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(249, 115, 22, 0.15);
+}
+
+/* Modern card styles */
+.modern-card {
+  background: hsl(var(--card-bg));
+  border: 1px solid hsl(220 13% 91%);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.modern-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Text color utilities */
+.text-primary-modern {
+  color: hsl(var(--text-primary));
+}
+
+.text-secondary-modern {
+  color: hsl(var(--text-secondary));
+}
+
+.text-muted-modern {
+  color: hsl(var(--text-muted));
+}
+
+/* Gradient backgrounds */
+.bg-gradient-card {
+  background: linear-gradient(135deg, hsl(var(--card-bg)) 0%, rgba(249, 250, 251, 0.8) 100%);
 }

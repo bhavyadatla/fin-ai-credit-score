@@ -99,18 +99,18 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-blue-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-lg">
-        <Link to="/" className="flex items-center justify-center space-x-2 mb-8">
-          <BarChart3 className="h-8 w-8 text-orange-600" />
+      <div className="w-full max-w-lg animate-fade-in">
+        <Link to="/" className="flex items-center justify-center space-x-2 mb-8 hover-lift">
+          <BarChart3 className="h-8 w-8 text-orange-600 animate-float" />
           <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">
             CreditAI
           </span>
         </Link>
 
-        <Card className="shadow-xl bg-white/95 backdrop-blur-sm">
+        <Card className="modern-card bg-gradient-card backdrop-blur-sm border-0 animate-scale-in">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold">Create Your Account</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-2xl font-bold text-primary-modern">Create Your Account</CardTitle>
+            <CardDescription className="text-muted-modern">
               Join thousands who have discovered their financial potential
             </CardDescription>
           </CardHeader>
@@ -119,7 +119,7 @@ const Register = () => {
               {/* Name Fields */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="firstName">First Name</Label>
+                  <Label htmlFor="firstName" className="text-secondary-modern">First Name</Label>
                   <div className="relative">
                     <Input
                       id="firstName"
@@ -129,13 +129,13 @@ const Register = () => {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                      className="pl-10"
+                      className="pl-10 border-slate-200 focus:border-orange-400 focus:ring-orange-400/20"
                     />
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="lastName">Last Name</Label>
+                  <Label htmlFor="lastName" className="text-secondary-modern">Last Name</Label>
                   <Input
                     id="lastName"
                     name="lastName"
@@ -144,13 +144,14 @@ const Register = () => {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     required
+                    className="border-slate-200 focus:border-orange-400 focus:ring-orange-400/20"
                   />
                 </div>
               </div>
 
               {/* Email */}
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email" className="text-secondary-modern">Email Address</Label>
                 <div className="relative">
                   <Input
                     id="email"
@@ -160,15 +161,15 @@ const Register = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="pl-10"
+                    className="pl-10 border-slate-200 focus:border-orange-400 focus:ring-orange-400/20"
                   />
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                 </div>
               </div>
 
               {/* Phone */}
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number</Label>
+                <Label htmlFor="phone" className="text-secondary-modern">Phone Number</Label>
                 <div className="relative">
                   <Input
                     id="phone"
@@ -177,15 +178,15 @@ const Register = () => {
                     placeholder="+1 (555) 123-4567"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="pl-10"
+                    className="pl-10 border-slate-200 focus:border-orange-400 focus:ring-orange-400/20"
                   />
-                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                 </div>
               </div>
 
               {/* Password */}
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-secondary-modern">Password</Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -195,12 +196,12 @@ const Register = () => {
                     value={formData.password}
                     onChange={handleInputChange}
                     required
-                    className="pl-10 pr-10"
+                    className="pl-10 pr-10 border-slate-200 focus:border-orange-400 focus:ring-orange-400/20"
                   />
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                   <button
                     type="button"
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -210,7 +211,7 @@ const Register = () => {
 
               {/* Confirm Password */}
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Label htmlFor="confirmPassword" className="text-secondary-modern">Confirm Password</Label>
                 <div className="relative">
                   <Input
                     id="confirmPassword"
@@ -220,12 +221,12 @@ const Register = () => {
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     required
-                    className="pl-10 pr-10"
+                    className="pl-10 pr-10 border-slate-200 focus:border-orange-400 focus:ring-orange-400/20"
                   />
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                   <button
                     type="button"
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
                     {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -241,14 +242,15 @@ const Register = () => {
                     checked={formData.agreeTerms}
                     onCheckedChange={(checked) => handleCheckboxChange('agreeTerms', checked as boolean)}
                     required
+                    className="border-slate-300"
                   />
-                  <Label htmlFor="agreeTerms" className="text-sm">
+                  <Label htmlFor="agreeTerms" className="text-sm text-secondary-modern">
                     I agree to the{" "}
-                    <Link to="/terms" className="text-orange-600 hover:text-orange-700 underline">
+                    <Link to="/terms" className="text-orange-600 hover:text-orange-700 underline font-medium">
                       Terms & Conditions
                     </Link>{" "}
                     and{" "}
-                    <Link to="/privacy" className="text-orange-600 hover:text-orange-700 underline">
+                    <Link to="/privacy" className="text-orange-600 hover:text-orange-700 underline font-medium">
                       Privacy Policy
                     </Link>
                   </Label>
@@ -259,8 +261,9 @@ const Register = () => {
                     id="agreeMarketing"
                     checked={formData.agreeMarketing}
                     onCheckedChange={(checked) => handleCheckboxChange('agreeMarketing', checked as boolean)}
+                    className="border-slate-300"
                   />
-                  <Label htmlFor="agreeMarketing" className="text-sm text-gray-600">
+                  <Label htmlFor="agreeMarketing" className="text-sm text-muted-modern">
                     I'd like to receive updates and marketing communications
                   </Label>
                 </div>
@@ -268,7 +271,7 @@ const Register = () => {
 
               <Button 
                 type="submit" 
-                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
+                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white border-0 hover-lift"
                 disabled={!formData.agreeTerms || loading}
               >
                 {loading ? "Creating Account..." : "Create Account"}
@@ -276,9 +279,9 @@ const Register = () => {
             </form>
             
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-modern">
                 Already have an account?{" "}
-                <Link to="/login" className="text-orange-600 hover:text-orange-700 font-medium">
+                <Link to="/login" className="text-orange-600 hover:text-orange-700 font-medium hover-lift inline-block">
                   Sign in
                 </Link>
               </p>
