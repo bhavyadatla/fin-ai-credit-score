@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -67,25 +66,25 @@ const Blog = () => {
       <div className="pt-20 pb-16 px-4">
         <div className="container mx-auto">
           {/* Hero Section */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent mb-6">
               CreditAI Blog
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Insights, stories, and updates from the world of AI-powered financial inclusion. 
               Stay informed about the latest trends and developments in alternative credit scoring.
             </p>
           </div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-4 mb-12 animate-slide-in">
             {categories.map((category, index) => (
               <Badge 
                 key={index} 
-                className={`cursor-pointer px-4 py-2 ${
+                className={`cursor-pointer px-4 py-2 hover-lift ${
                   index === 0 
                     ? 'bg-orange-500 text-white hover:bg-orange-600' 
-                    : 'bg-white text-gray-700 hover:bg-orange-50'
+                    : 'bg-white text-gray-700 hover:bg-orange-50 border-gray-300'
                 }`}
               >
                 {category}
@@ -94,14 +93,14 @@ const Blog = () => {
           </div>
 
           {/* Featured Post */}
-          <Card className="mb-12 overflow-hidden hover:shadow-xl transition-shadow">
+          <Card className="mb-12 overflow-hidden hover:shadow-xl transition-shadow hover-lift animate-scale-in">
             <div className="bg-gradient-to-r from-orange-500 to-blue-600 p-1">
               <div className="bg-white p-8">
                 <Badge className="mb-4 bg-orange-100 text-orange-800">Featured</Badge>
-                <h2 className="text-3xl font-bold mb-4 text-gray-900">
+                <h2 className="text-3xl font-bold mb-4 text-gray-800">
                   {blogPosts[0].title}
                 </h2>
-                <p className="text-lg text-gray-600 mb-6">
+                <p className="text-lg text-gray-700 mb-6">
                   {blogPosts[0].excerpt}
                 </p>
                 <div className="flex items-center justify-between">
@@ -116,7 +115,7 @@ const Blog = () => {
                     </div>
                     <span>{blogPosts[0].readTime}</span>
                   </div>
-                  <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700">
+                  <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 hover-lift">
                     Read More <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
@@ -127,12 +126,12 @@ const Blog = () => {
           {/* Blog Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.slice(1).map((post, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="hover:shadow-lg transition-shadow hover-lift animate-scale-in" style={{ animationDelay: `${index * 0.1}s` }}>
                 <CardHeader>
                   <Badge className="w-fit mb-2 bg-blue-100 text-blue-800">
                     {post.category}
                   </Badge>
-                  <CardTitle className="text-xl line-clamp-2">
+                  <CardTitle className="text-xl line-clamp-2 text-gray-800">
                     {post.title}
                   </CardTitle>
                 </CardHeader>
@@ -152,7 +151,7 @@ const Blog = () => {
                       <Calendar className="h-4 w-4" />
                       <span>{post.date}</span>
                     </div>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" className="border-gray-300 text-gray-700 hover:bg-gray-50">
                       Read More
                     </Button>
                   </div>
@@ -162,7 +161,7 @@ const Blog = () => {
           </div>
 
           {/* Newsletter Signup */}
-          <div className="mt-16 bg-gradient-to-r from-orange-500 to-blue-600 rounded-2xl p-8 text-center text-white">
+          <div className="mt-16 bg-gradient-to-r from-orange-500 to-blue-600 rounded-2xl p-8 text-center text-white animate-scale-in">
             <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
             <p className="text-xl mb-6 opacity-90">
               Subscribe to our newsletter for the latest insights on AI-powered financial inclusion.
@@ -171,9 +170,9 @@ const Blog = () => {
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="flex-1 px-4 py-2 rounded text-gray-900"
+                className="flex-1 px-4 py-2 rounded text-gray-700 border-gray-300"
               />
-              <Button className="bg-white text-orange-600 hover:bg-gray-100">
+              <Button className="bg-white text-orange-600 hover:bg-gray-100 hover-lift">
                 Subscribe
               </Button>
             </div>

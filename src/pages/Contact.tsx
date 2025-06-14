@@ -49,11 +49,11 @@ const Contact = () => {
       <div className="pt-20 pb-16 px-4">
         <div className="container mx-auto">
           {/* Hero Section */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent mb-6">
               Contact Us
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Have questions about CreditAI? We're here to help. Reach out to our team for support, 
               partnerships, or general inquiries about our AI-powered credit scoring platform.
             </p>
@@ -61,51 +61,52 @@ const Contact = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <Card className="shadow-xl">
+            <Card className="shadow-xl hover-lift animate-scale-in">
               <CardHeader>
-                <CardTitle className="text-2xl">Send us a Message</CardTitle>
+                <CardTitle className="text-2xl text-gray-800">Send us a Message</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" required />
+                      <Label htmlFor="firstName" className="text-gray-700">First Name</Label>
+                      <Input id="firstName" required className="border-gray-300 focus:border-orange-500" />
                     </div>
                     <div>
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" required />
+                      <Label htmlFor="lastName" className="text-gray-700">Last Name</Label>
+                      <Input id="lastName" required className="border-gray-300 focus:border-orange-500" />
                     </div>
                   </div>
                   
                   <div>
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" required />
+                    <Label htmlFor="email" className="text-gray-700">Email Address</Label>
+                    <Input id="email" type="email" required className="border-gray-300 focus:border-orange-500" />
                   </div>
                   
                   <div>
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" type="tel" />
+                    <Label htmlFor="phone" className="text-gray-700">Phone Number</Label>
+                    <Input id="phone" type="tel" className="border-gray-300 focus:border-orange-500" />
                   </div>
                   
                   <div>
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input id="subject" required />
+                    <Label htmlFor="subject" className="text-gray-700">Subject</Label>
+                    <Input id="subject" required className="border-gray-300 focus:border-orange-500" />
                   </div>
                   
                   <div>
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message" className="text-gray-700">Message</Label>
                     <Textarea 
                       id="message" 
                       rows={6} 
                       placeholder="Tell us how we can help you..."
                       required 
+                      className="border-gray-300 focus:border-orange-500"
                     />
                   </div>
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
+                    className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 hover-lift"
                   >
                     Send Message <Send className="ml-2 h-4 w-4" />
                   </Button>
@@ -116,14 +117,14 @@ const Contact = () => {
             {/* Contact Information */}
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
+                <Card key={index} className="hover:shadow-lg transition-shadow hover-lift animate-slide-in" style={{ animationDelay: `${index * 0.1}s` }}>
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
                       <div className={`${info.color} mt-1`}>
                         <info.icon className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2">{info.title}</h3>
+                        <h3 className="font-semibold text-lg mb-2 text-gray-800">{info.title}</h3>
                         {info.details.map((detail, idx) => (
                           <p key={idx} className="text-gray-600">{detail}</p>
                         ))}
@@ -137,11 +138,11 @@ const Contact = () => {
 
           {/* FAQ Section */}
           <div className="mt-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-800 animate-fade-in">Frequently Asked Questions</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card>
+              <Card className="hover-lift animate-scale-in">
                 <CardHeader>
-                  <CardTitle className="text-lg">How accurate is CreditAI's scoring?</CardTitle>
+                  <CardTitle className="text-lg text-gray-800">How accurate is CreditAI's scoring?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600">
@@ -151,9 +152,9 @@ const Contact = () => {
                 </CardContent>
               </Card>
               
-              <Card>
+              <Card className="hover-lift animate-scale-in" style={{ animationDelay: '0.1s' }}>
                 <CardHeader>
-                  <CardTitle className="text-lg">Is my data secure with CreditAI?</CardTitle>
+                  <CardTitle className="text-lg text-gray-800">Is my data secure with CreditAI?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600">
@@ -163,9 +164,9 @@ const Contact = () => {
                 </CardContent>
               </Card>
               
-              <Card>
+              <Card className="hover-lift animate-scale-in" style={{ animationDelay: '0.2s' }}>
                 <CardHeader>
-                  <CardTitle className="text-lg">How long does it take to get my score?</CardTitle>
+                  <CardTitle className="text-lg text-gray-800">How long does it take to get my score?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600">
@@ -175,9 +176,9 @@ const Contact = () => {
                 </CardContent>
               </Card>
               
-              <Card>
+              <Card className="hover-lift animate-scale-in" style={{ animationDelay: '0.3s' }}>
                 <CardHeader>
-                  <CardTitle className="text-lg">Can I use CreditAI without credit history?</CardTitle>
+                  <CardTitle className="text-lg text-gray-800">Can I use CreditAI without credit history?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600">
@@ -191,15 +192,15 @@ const Contact = () => {
 
           {/* Map Section */}
           <div className="mt-16">
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden hover-lift animate-fade-in">
               <CardHeader>
-                <CardTitle className="text-2xl text-center">Find Us</CardTitle>
+                <CardTitle className="text-2xl text-center text-gray-800">Find Us</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
                 <div className="bg-gradient-to-r from-orange-100 to-blue-100 h-64 flex items-center justify-center">
                   <div className="text-center">
-                    <MapPin className="h-12 w-12 text-orange-600 mx-auto mb-4" />
-                    <p className="text-lg font-semibold">Interactive Map Coming Soon</p>
+                    <MapPin className="h-12 w-12 text-orange-600 mx-auto mb-4 animate-bounce-custom" />
+                    <p className="text-lg font-semibold text-gray-800">Interactive Map Coming Soon</p>
                     <p className="text-gray-600">123 Innovation Street, Silicon Valley, CA</p>
                   </div>
                 </div>

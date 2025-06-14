@@ -48,32 +48,32 @@ const FAQs = () => {
       <div className="pt-20 pb-16 px-4">
         <div className="container mx-auto">
           {/* Hero Section */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-in">
             <div className="flex justify-center mb-6">
-              <HelpCircle className="h-16 w-16 text-orange-600" />
+              <HelpCircle className="h-16 w-16 text-orange-600 animate-bounce-custom" />
             </div>
             <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent mb-6">
               Frequently Asked Questions
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Get answers to common questions about our AI-powered alternative credit scoring platform.
             </p>
           </div>
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto">
-            <Card className="border-0 shadow-lg">
+            <Card className="border-0 shadow-lg hover-lift animate-scale-in">
               <CardHeader>
-                <CardTitle className="text-2xl text-center">Common Questions</CardTitle>
+                <CardTitle className="text-2xl text-center text-gray-800">Common Questions</CardTitle>
               </CardHeader>
               <CardContent>
                 <Accordion type="single" collapsible className="w-full">
                   {faqs.map((faq, index) => (
-                    <AccordionItem key={index} value={`item-${index}`}>
-                      <AccordionTrigger className="text-left text-lg font-medium">
+                    <AccordionItem key={index} value={`item-${index}`} className="animate-slide-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                      <AccordionTrigger className="text-left text-lg font-medium text-gray-800 hover:text-orange-600 transition-colors">
                         {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent className="text-gray-600 text-base leading-relaxed">
+                      <AccordionContent className="text-gray-700 text-base leading-relaxed">
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>
@@ -84,14 +84,14 @@ const FAQs = () => {
           </div>
 
           {/* Contact Section */}
-          <div className="text-center mt-16">
-            <h2 className="text-3xl font-bold mb-4">Still have questions?</h2>
-            <p className="text-xl text-gray-600 mb-8">
+          <div className="text-center mt-16 animate-fade-in">
+            <h2 className="text-3xl font-bold mb-4 text-gray-800">Still have questions?</h2>
+            <p className="text-xl text-gray-700 mb-8">
               Our support team is here to help you with any additional questions.
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-blue-600 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-blue-700 transition-all duration-300"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-blue-600 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-blue-700 transition-all duration-300 hover-lift"
             >
               Contact Support
             </a>
