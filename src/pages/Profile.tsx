@@ -4,12 +4,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { User, Mail, Phone, Calendar } from 'lucide-react';
+import { User, Mail, Calendar } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import DashboardLayout from '@/components/DashboardLayout';
+import ImageUpload from '@/components/ImageUpload';
 
 const Profile = () => {
   const { user } = useAuth();
@@ -54,6 +54,25 @@ const Profile = () => {
     setProfile(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleImageUpdate = async (imageUrl: string) => {
+    setProfile(prev => ({ ...prev, avatar_url: imageUrl }));
+    
+    if (!user) return;
+
+    const { error } = await supabase
+      .from('profiles')
+      .update({ avatar_url: imageUrl, updated_at: new Date().toISOString() })
+      .eq('id', user.id);
+
+    if (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to update profile image',
+        variant: 'destructive',
+      });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
@@ -66,7 +85,6 @@ const Profile = () => {
         first_name: profile.first_name,
         last_name: profile.last_name,
         email: profile.email,
-        avatar_url: profile.avatar_url,
         updated_at: new Date().toISOString(),
       })
       .eq('id', user.id);
@@ -93,38 +111,28 @@ const Profile = () => {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Profile</h1>
+      <div className="space-y-6 animate-fade-in">
+        <div className="animate-slide-in">
+          <h1 className="text-3xl font-bold text-gray-800">Profile</h1>
           <p className="text-gray-600">Manage your account information</p>
         </div>
 
-        <Card>
+        <Card className="hover-lift animate-scale-in">
           <CardHeader>
-            <CardTitle>Personal Information</CardTitle>
+            <CardTitle className="text-gray-800">Personal Information</CardTitle>
             <CardDescription>Update your personal details here</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="flex items-center space-x-6">
-                <Avatar className="h-24 w-24">
-                  <AvatarImage src={profile.avatar_url} />
-                  <AvatarFallback className="text-lg">
-                    {getInitials() || 'UN'}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <Button type="button" variant="outline">
-                    Change Avatar
-                  </Button>
-                  <p className="text-sm text-gray-500 mt-2">
-                    JPG, GIF or PNG. 1MB max.
-                  </p>
-                </div>
-              </div>
+              <ImageUpload
+                currentImage={profile.avatar_url}
+                onImageUpdate={handleImageUpdate}
+                fallbackText={getInitials() || 'UN'}
+                size="xl"
+              />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
+                <div className="space-y-2 animate-slide-in" style={{ animationDelay: '0.1s' }}>
                   <Label htmlFor="first_name">First Name</Label>
                   <div className="relative">
                     <Input
@@ -133,13 +141,13 @@ const Profile = () => {
                       value={profile.first_name}
                       onChange={handleInputChange}
                       placeholder="Enter your first name"
-                      className="pl-10"
+                      className="pl-10 hover-lift"
                     />
                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   </div>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 animate-slide-in" style={{ animationDelay: '0.2s' }}>
                   <Label htmlFor="last_name">Last Name</Label>
                   <Input
                     id="last_name"
@@ -147,10 +155,11 @@ const Profile = () => {
                     value={profile.last_name}
                     onChange={handleInputChange}
                     placeholder="Enter your last name"
+                    className="hover-lift"
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 animate-slide-in" style={{ animationDelay: '0.3s' }}>
                   <Label htmlFor="email">Email</Label>
                   <div className="relative">
                     <Input
@@ -160,13 +169,13 @@ const Profile = () => {
                       value={profile.email}
                       onChange={handleInputChange}
                       placeholder="Enter your email"
-                      className="pl-10"
+                      className="pl-10 hover-lift"
                     />
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   </div>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 animate-slide-in" style={{ animationDelay: '0.4s' }}>
                   <Label>Member Since</Label>
                   <div className="relative">
                     <Input
@@ -179,11 +188,11 @@ const Profile = () => {
                 </div>
               </div>
 
-              <div className="flex justify-end">
+              <div className="flex justify-end animate-slide-in" style={{ animationDelay: '0.5s' }}>
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
+                  className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 hover-lift"
                 >
                   {loading ? 'Saving...' : 'Save Changes'}
                 </Button>
