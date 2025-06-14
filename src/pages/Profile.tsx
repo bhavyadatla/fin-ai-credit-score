@@ -118,10 +118,10 @@ const Profile = () => {
             <p className="text-gray-600 text-lg">Manage your account information</p>
           </div>
 
-          <Card className="shadow-xl rounded-2xl border-0 bg-[#181616] text-white" style={{ background: "#181616" }}>
+          <Card className="shadow-xl rounded-2xl border bg-white text-gray-900 modern-card">
             <CardHeader>
-              <CardTitle className="text-lg md:text-2xl text-white">Personal Information</CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardTitle className="text-lg md:text-2xl text-gray-900">Personal Information</CardTitle>
+              <CardDescription className="text-gray-500">
                 Update your personal details here
               </CardDescription>
             </CardHeader>
@@ -136,7 +136,7 @@ const Profile = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="first_name" className="text-base text-gray-200">First Name</Label>
+                    <Label htmlFor="first_name" className="text-base text-gray-900">First Name</Label>
                     <div className="relative">
                       <Input
                         id="first_name"
@@ -144,24 +144,24 @@ const Profile = () => {
                         value={profile.first_name}
                         onChange={handleInputChange}
                         placeholder="Enter your first name"
-                        className="bg-[#272525] border border-[#343232] text-white placeholder:text-gray-400 pl-10"
+                        className="bg-background border border-gray-200 text-gray-900 placeholder:text-gray-400 pl-10"
                       />
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="last_name" className="text-base text-gray-200">Last Name</Label>
+                    <Label htmlFor="last_name" className="text-base text-gray-900">Last Name</Label>
                     <Input
                       id="last_name"
                       name="last_name"
                       value={profile.last_name}
                       onChange={handleInputChange}
                       placeholder="Enter your last name"
-                      className="bg-[#272525] border border-[#343232] text-white placeholder:text-gray-400"
+                      className="bg-background border border-gray-200 text-gray-900 placeholder:text-gray-400"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-base text-gray-200">Email</Label>
+                    <Label htmlFor="email" className="text-base text-gray-900">Email</Label>
                     <div className="relative">
                       <Input
                         id="email"
@@ -170,18 +170,18 @@ const Profile = () => {
                         value={profile.email}
                         onChange={handleInputChange}
                         placeholder="Enter your email"
-                        className="bg-[#272525] border border-[#343232] text-white placeholder:text-gray-400 pl-10"
+                        className="bg-background border border-gray-200 text-gray-900 placeholder:text-gray-400 pl-10"
                       />
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-base text-gray-200">Member Since</Label>
+                    <Label className="text-base text-gray-900">Member Since</Label>
                     <div className="relative">
                       <Input
                         value={user?.created_at ? new Date(user.created_at).toLocaleDateString() : ''}
                         disabled
-                        className="bg-[#272525] border border-[#343232] text-white placeholder:text-gray-400 pl-10"
+                        className="bg-background border border-gray-200 text-gray-900 placeholder:text-gray-400 pl-10"
                       />
                       <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     </div>
@@ -207,4 +207,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
