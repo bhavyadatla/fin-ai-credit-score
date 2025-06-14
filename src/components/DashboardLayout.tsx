@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -131,7 +130,10 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         </nav>
 
         <div className="absolute bottom-4 left-4 right-4 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <Button variant="outline" className="w-full justify-start hover-lift" onClick={signOut}>
+          <Button 
+            className="w-full justify-start bg-[#181511] hover:bg-[#28221b] rounded-xl shadow-none text-white text-base font-medium"
+            onClick={signOut}
+          >
             <LogOut className="h-4 w-4 mr-2" />
             {t('logout')}
           </Button>
@@ -152,7 +154,10 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               </button>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="outline" size="sm" className="hover-lift">
+              <Button 
+                className="bg-[#181511] hover:bg-[#28221b] text-white rounded-xl shadow-none"
+                size="sm"
+              >
                 <Bell className="h-4 w-4" />
               </Button>
               <div className="flex items-center space-x-3 animate-fade-in">

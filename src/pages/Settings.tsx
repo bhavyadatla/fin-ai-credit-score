@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -191,7 +190,10 @@ const Settings = () => {
                   </div>
                 </div>
                 
-                <Button onClick={saveCustomColors} className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700">
+                <Button 
+                  onClick={saveCustomColors} 
+                  className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 rounded-lg shadow-none"
+                >
                   Apply Custom Colors
                 </Button>
               </div>
@@ -247,7 +249,9 @@ const Settings = () => {
                   <p className="font-medium text-orange-800">Score Updates</p>
                   <p className="text-sm text-orange-400">Get notified when your credit score changes</p>
                 </div>
-                <Button variant="outline" size="sm" className="border-orange-200 text-orange-700 hover:bg-orange-50">
+                <Button 
+                  className="rounded-xl px-8 shadow-none text-orange-600 bg-[#181511] hover:bg-[#28221b] border-0 font-semibold text-base"
+                >
                   Configure
                 </Button>
               </div>
@@ -257,7 +261,9 @@ const Settings = () => {
                   <p className="font-medium text-orange-800">Monthly Reports</p>
                   <p className="text-sm text-orange-400">Receive monthly credit report summaries</p>
                 </div>
-                <Button variant="outline" size="sm" className="border-orange-200 text-orange-700 hover:bg-orange-50">
+                <Button 
+                  className="rounded-xl px-8 shadow-none text-orange-600 bg-[#181511] hover:bg-[#28221b] border-0 font-semibold text-base"
+                >
                   Configure
                 </Button>
               </div>
@@ -267,7 +273,9 @@ const Settings = () => {
                   <p className="font-medium text-orange-800">Security Alerts</p>
                   <p className="text-sm text-orange-400">Important security and fraud alerts</p>
                 </div>
-                <Button variant="outline" size="sm" className="border-orange-200 text-orange-700 hover:bg-orange-50">
+                <Button 
+                  className="rounded-xl px-8 shadow-none text-orange-600 bg-[#181511] hover:bg-[#28221b] border-0 font-semibold text-base"
+                >
                   Configure
                 </Button>
               </div>
@@ -293,7 +301,9 @@ const Settings = () => {
                   <p className="font-medium text-orange-800">Change Password</p>
                   <p className="text-sm text-orange-400">Update your account password</p>
                 </div>
-                <Button variant="outline" size="sm" className="border-orange-200 text-orange-700 hover:bg-orange-50">
+                <Button 
+                  className="rounded-xl px-8 shadow-none text-orange-600 bg-[#181511] hover:bg-[#28221b] border-0 font-semibold text-base"
+                >
                   Change
                 </Button>
               </div>
@@ -303,7 +313,9 @@ const Settings = () => {
                   <p className="font-medium text-orange-800">Two-Factor Authentication</p>
                   <p className="text-sm text-orange-400">Add an extra layer of security</p>
                 </div>
-                <Button variant="outline" size="sm" className="border-orange-200 text-orange-700 hover:bg-orange-50">
+                <Button 
+                  className="rounded-xl px-8 shadow-none text-orange-600 bg-[#181511] hover:bg-[#28221b] border-0 font-semibold text-base"
+                >
                   Enable
                 </Button>
               </div>
@@ -313,7 +325,10 @@ const Settings = () => {
                   <p className="font-medium text-orange-800">Delete Account</p>
                   <p className="text-sm text-orange-400">Permanently delete your account and data</p>
                 </div>
-                <Button variant="destructive" size="sm" className="bg-orange-500 border-orange-200 text-white hover:bg-orange-600">
+                <Button 
+                  variant="destructive" 
+                  className="rounded-xl px-8 shadow-none bg-orange-500 text-white hover:bg-orange-600 border-0 font-semibold text-base"
+                >
                   Delete
                 </Button>
               </div>
