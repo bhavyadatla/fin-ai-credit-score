@@ -106,22 +106,24 @@ const Profile = () => {
   };
 
   const getInitials = () => {
-    return `${profile.first_name.charAt(0)}${profile.last_name.charAt(0)}`.toUpperCase() || 'UN';
+    const first = profile.first_name.charAt(0) || '';
+    const last = profile.last_name.charAt(0) || '';
+    return `${first}${last}`.toUpperCase() || 'UN';
   };
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gradient-to-br from-white via-orange-50 to-blue-50 py-8 px-2 md:px-0 animate-fade-in">
+      <div className="min-h-screen bg-white py-8 px-2 md:px-0 animate-fade-in">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">Profile</h1>
-            <p className="text-gray-600 text-lg">Manage your account information</p>
+            <h1 className="text-3xl font-bold text-orange-600">Profile</h1>
+            <p className="text-orange-500 text-lg">Manage your account information</p>
           </div>
 
-          <Card className="shadow-xl rounded-2xl border bg-white text-gray-900 modern-card">
+          <Card className="shadow-xl rounded-2xl border border-orange-100 bg-white">
             <CardHeader>
-              <CardTitle className="text-lg md:text-2xl text-gray-900">Personal Information</CardTitle>
-              <CardDescription className="text-gray-500">
+              <CardTitle className="text-lg md:text-2xl text-orange-600 font-extrabold">Personal Information</CardTitle>
+              <CardDescription className="text-orange-400">
                 Update your personal details here
               </CardDescription>
             </CardHeader>
@@ -130,13 +132,13 @@ const Profile = () => {
                 <ImageUpload
                   currentImage={profile.avatar_url}
                   onImageUpdate={handleImageUpdate}
-                  fallbackText={getInitials() || 'UN'}
+                  fallbackText={getInitials()}
                   size="xl"
                 />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="first_name" className="text-base text-gray-900">First Name</Label>
+                    <Label htmlFor="first_name" className="text-base text-orange-600 font-semibold">First Name</Label>
                     <div className="relative">
                       <Input
                         id="first_name"
@@ -144,24 +146,24 @@ const Profile = () => {
                         value={profile.first_name}
                         onChange={handleInputChange}
                         placeholder="Enter your first name"
-                        className="bg-background border border-gray-200 text-gray-900 placeholder:text-gray-400 pl-10"
+                        className="bg-white border-2 border-orange-200 text-orange-900 placeholder:text-orange-300 pl-10 focus:border-orange-500"
                       />
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-orange-300" />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="last_name" className="text-base text-gray-900">Last Name</Label>
+                    <Label htmlFor="last_name" className="text-base text-orange-600 font-semibold">Last Name</Label>
                     <Input
                       id="last_name"
                       name="last_name"
                       value={profile.last_name}
                       onChange={handleInputChange}
                       placeholder="Enter your last name"
-                      className="bg-background border border-gray-200 text-gray-900 placeholder:text-gray-400"
+                      className="bg-white border-2 border-orange-200 text-orange-900 placeholder:text-orange-300 focus:border-orange-500"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-base text-gray-900">Email</Label>
+                    <Label htmlFor="email" className="text-base text-orange-600 font-semibold">Email</Label>
                     <div className="relative">
                       <Input
                         id="email"
@@ -170,20 +172,20 @@ const Profile = () => {
                         value={profile.email}
                         onChange={handleInputChange}
                         placeholder="Enter your email"
-                        className="bg-background border border-gray-200 text-gray-900 placeholder:text-gray-400 pl-10"
+                        className="bg-white border-2 border-orange-200 text-orange-900 placeholder:text-orange-300 pl-10 focus:border-orange-500"
                       />
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-orange-300" />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-base text-gray-900">Member Since</Label>
+                    <Label className="text-base text-orange-600 font-semibold">Member Since</Label>
                     <div className="relative">
                       <Input
                         value={user?.created_at ? new Date(user.created_at).toLocaleDateString() : ''}
                         disabled
-                        className="bg-background border border-gray-200 text-gray-900 placeholder:text-gray-400 pl-10"
+                        className="bg-white border-2 border-orange-200 text-orange-400 placeholder:text-orange-200 pl-10"
                       />
-                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-orange-300" />
                     </div>
                   </div>
                 </div>
@@ -192,7 +194,7 @@ const Profile = () => {
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="bg-gradient-to-r from-orange-500 to-orange-600 text-white transition-colors rounded-lg px-8 py-2 text-lg font-semibold hover:from-orange-600 hover:to-orange-700"
+                    className="bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg px-8 py-2 text-lg font-semibold hover:from-orange-600 hover:to-orange-700 border-0"
                   >
                     {loading ? 'Saving...' : 'Save Changes'}
                   </Button>
