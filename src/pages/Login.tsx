@@ -5,12 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, Eye, EyeOff } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { BarChart3, Eye, EyeOff, Mail } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [resetEmail, setResetEmail] = useState("");
+  const [isResetDialogOpen, setIsResetDialogOpen] = useState(false);
+  const { toast } = useToast();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,6 +23,18 @@ const Login = () => {
     console.log("Login attempt:", { email, password });
     // Redirect to dashboard
     window.location.href = "/dashboard";
+  };
+
+  const handleForgotPassword = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Simulate forgot password - in real app, integrate with Supabase
+    console.log("Password reset request for:", resetEmail);
+    toast({
+      title: "Password Reset Sent",
+      description: "If an account exists with this email, you'll receive a password reset link shortly.",
+    });
+    setIsResetDialogOpen(false);
+    setResetEmail("");
   };
 
   return (
@@ -70,6 +87,56 @@ const Login = () => {
                   </button>
                 </div>
               </div>
+              
+              <div className="flex justify-end">
+                <Dialog open={isResetDialogOpen} onOpenChange={setIsResetDialogOpen}>
+                  <DialogTrigger asChild>
+                    <Button variant="link" className="p-0 h-auto text-sm text-orange-600 hover:text-orange-700">
+                      Forgot Password?
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                      <DialogTitle className="flex items-center">
+                        <Mail className="h-5 w-5 mr-2 text-orange-600" />
+                        Reset Password
+                      </DialogTitle>
+                      <DialogDescription>
+                        Enter your email address and we'll send you a link to reset your password.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleForgotPassword} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="resetEmail">Email Address</Label>
+                        <Input
+                          id="resetEmail"
+                          type="email"
+                          placeholder="Enter your email"
+                          value={resetEmail}
+                          onChange={(e) => setResetEmail(e.target.value)}
+                          required
+                        />
+                      </div>
+                      <div className="flex justify-end space-x-2">
+                        <Button 
+                          type="button" 
+                          variant="outline" 
+                          onClick={() => setIsResetDialogOpen(false)}
+                        >
+                          Cancel
+                        </Button>
+                        <Button 
+                          type="submit"
+                          className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
+                        >
+                          Send Reset Link
+                        </Button>
+                      </div>
+                    </form>
+                  </DialogContent>
+                </Dialog>
+              </div>
+
               <Button 
                 type="submit" 
                 className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
