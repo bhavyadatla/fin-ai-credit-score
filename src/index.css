@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -95,6 +94,21 @@
     --text-primary: 210 40% 98%;
     --text-secondary: 210 40% 90%;
     --text-muted: 215 20.2% 65.1%;
+  }
+
+  .destructive,
+  .group.destructive,
+  .group-[.destructive] {
+    /* Custom styles for error toasts in white & orange theme */
+    background-color: #fb923c !important; /* Tailwind orange-400 */
+    color: #fff7ed !important; /* Off-white for contrast */
+    border-color: #f97316 !important; /* Tailwind orange-500 */
+  }
+
+  .destructive .text-destructive-foreground,
+  .group.destructive .text-destructive-foreground,
+  .group-[.destructive] .text-destructive-foreground {
+    color: #fff7ed !important; /* Off-white for error text */
   }
 }
 
