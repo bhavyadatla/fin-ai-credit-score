@@ -1,7 +1,5 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { TrendingUp, CreditCard, Bell, Star } from "lucide-react";
@@ -9,11 +7,17 @@ import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/hooks/useLanguage";
 import { supabase } from "@/integrations/supabase/client";
 import DashboardLayout from "@/components/DashboardLayout";
+import CreditScoreGauge from "@/components/CreditScoreGauge";
+import ScorePeriodSelector from "@/components/ScorePeriodSelector";
+import { addDays, subMonths, subYears, isWithinInterval } from "date-fns";
 
 const Dashboard = () => {
   const { user } = useAuth();
   const { t } = useLanguage();
   const [profile, setProfile] = useState<any>(null);
+  // More advanced: period selection for the main score and report
+  const [selectedPeriod, setSelectedPeriod] = useState<{ period: string, dateRange?: { from?: Date; to?: Date } }>({ period: "3mo" });
+  const [scoreHistory, setScoreHistory] = useState<any[]>([]);
   const [creditData, setCreditData] = useState({
     score: 742,
     category: "VERY GOOD",
@@ -26,8 +30,16 @@ const Dashboard = () => {
     if (user) {
       loadProfileData();
       loadCreditData();
+      loadCreditReports();
     }
   }, [user]);
+
+  useEffect(() => {
+    // Refetch/compute for selected period
+    if (user) {
+      loadCreditReports();
+    }
+  }, [user, selectedPeriod]);
 
   const loadProfileData = async () => {
     if (!user) return;
@@ -62,6 +74,70 @@ const Dashboard = () => {
     }
   };
 
+  const loadCreditReports = async () => {
+    if (!user) return;
+
+    // Filter for the selected period; fallback to "all".
+    const { period, dateRange } = selectedPeriod;
+    let from: Date | undefined, to: Date | undefined = new Date();
+    switch (period) {
+      case "7d":
+        from = addDays(new Date(), -7);
+        break;
+      case "1mo":
+        from = subMonths(new Date(), 1);
+        break;
+      case "3mo":
+        from = subMonths(new Date(), 3);
+        break;
+      case "6mo":
+        from = subMonths(new Date(), 6);
+        break;
+      case "1y":
+        from = subYears(new Date(), 1);
+        break;
+      case "2y":
+        from = subYears(new Date(), 2);
+        break;
+      case "3y":
+        from = subYears(new Date(), 3);
+        break;
+      case "custom":
+        if (dateRange && dateRange.from && dateRange.to) {
+          from = dateRange.from;
+          to = dateRange.to;
+        }
+        break;
+      default:
+        from = undefined;
+        break;
+    }
+
+    let query = supabase
+      .from('credit_reports')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(50);
+
+    if (from) {
+      query = query.gte('report_date', from.toISOString().substring(0, 10));
+    }
+    if (to) {
+      query = query.lte('report_date', to.toISOString().substring(0, 10));
+    }
+
+    const { data } = await query;
+    setScoreHistory(Array.isArray(data) ? data : []);
+    // Update score for gauge (latest in period)
+    if (data && data.length > 0) {
+      setCreditData(cd => ({
+        ...cd,
+        score: data[0].score
+      }));
+    }
+  };
+
   const getUserName = () => {
     if (profile?.first_name && profile?.last_name) {
       return `${profile.first_name} ${profile.last_name}`;
@@ -78,6 +154,25 @@ const Dashboard = () => {
     }
     return user?.email?.charAt(0).toUpperCase() || 'U';
   };
+
+  const periodHeader = () => {
+    if (selectedPeriod.period === "custom" && selectedPeriod.dateRange?.from && selectedPeriod.dateRange.to) {
+      return `${t("creditScore")} (${selectedPeriod.dateRange.from.toLocaleDateString()} - ${selectedPeriod.dateRange.to.toLocaleDateString()})`;
+    }
+    const period = PERIOD_OPTIONS.find(p => p.value === selectedPeriod.period);
+    return period ? `${t("creditScore")} (${period.label})` : t("creditScore");
+  };
+
+  const PERIOD_OPTIONS = [
+    { value: "7d", label: "Last 7 days" },
+    { value: "1mo", label: "Last 1 month" },
+    { value: "3mo", label: "Last 3 months" },
+    { value: "6mo", label: "Last 6 months" },
+    { value: "1y", label: "Last 1 year" },
+    { value: "2y", label: "Last 2 years" },
+    { value: "3y", label: "Last 3 years" },
+    { value: "custom", label: "Custom Range" },
+  ];
 
   return (
     <DashboardLayout>
@@ -99,59 +194,25 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Credit Score Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Score */}
-          <Card className="lg:col-span-2 p-0 overflow-hidden shadow-md" style={{
-            background: "linear-gradient(105deg, #EA580C 0%, #2563EB 100%)",
-            color: "#fff",
-            border: 'none'
-          }}>
-            <CardHeader className="p-6 pb-3">
-              <CardTitle className="text-white text-2xl">{t('creditScore')}</CardTitle>
+        {/* Score Gauge + Period Selector */}
+        <Card className="p-0 overflow-visible shadow-md mb-6" style={{ background: "linear-gradient(105deg, #EA580C 0%, #2563EB 100%)", color: "#fff", border: 'none' }}>
+          <CardHeader className="p-6 pb-2 flex flex-col md:flex-row md:items-end gap-3">
+            <div className="flex-1">
+              <CardTitle className="text-white text-2xl">{periodHeader()}</CardTitle>
               <CardDescription className="text-orange-100">
-                Updated 2 hours ago
+                Updated within selected period
               </CardDescription>
-            </CardHeader>
-            <CardContent className="p-6 pt-3">
-              <div className="flex flex-col lg:flex-row items-center justify-between">
-                <div className="flex-1 mb-6 lg:mb-0">
-                  <div className="text-6xl font-bold mb-2">{creditData.score}</div>
-                  <Badge className="bg-white/20 text-white font-bold px-4 py-2 rounded-lg">
-                    {creditData.category}
-                  </Badge>
-                  <p className="text-orange-100 mt-2">Range: 740-799</p>
-                </div>
-                {/* Circular Progress */}
-                <div className="relative flex items-center justify-center w-32 h-32">
-                  <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="40"
-                      stroke="rgba(255,255,255,0.3)"
-                      strokeWidth="8"
-                      fill="transparent"
-                    />
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="40"
-                      stroke="#fff"
-                      strokeWidth="8"
-                      fill="transparent"
-                      strokeDasharray={`${(creditData.score / 850) * 251.2} 251.2`}
-                      style={{ transition: "stroke-dasharray 0.6s" }}
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-xl font-semibold">{Math.round((creditData.score / 850) * 100)}%</span>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+            <ScorePeriodSelector value={selectedPeriod} onChange={setSelectedPeriod} />
+          </CardHeader>
+          <CardContent className="p-6 pt-0 flex flex-col items-center">
+            <CreditScoreGauge score={creditData.score} />
+          </CardContent>
+        </Card>
 
+        {/* Legacy section - keep rest of page unchanged */}
+        {/* Credit Factors & Add'l Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Credit Factors */}
           <Card className="bg-white shadow-md border border-gray-200">
             <CardHeader>
@@ -240,4 +301,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
