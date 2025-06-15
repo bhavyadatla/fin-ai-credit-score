@@ -17,15 +17,15 @@ const Footer = () => {
               Empowering financial inclusion through AI-powered alternative credit scoring.
             </p>
             <div className="flex space-x-4 animate-scale-in" style={{ animationDelay: '0.4s' }}>
-              <div className="bg-orange-500 p-2 rounded hover-lift cursor-pointer transition-all duration-300 hover:bg-orange-600">
-                <Mail className="h-4 w-4" />
-              </div>
-              <div className="bg-blue-500 p-2 rounded hover-lift cursor-pointer transition-all duration-300 hover:bg-blue-600">
-                <Phone className="h-4 w-4" />
-              </div>
-              <div className="bg-green-500 p-2 rounded hover-lift cursor-pointer transition-all duration-300 hover:bg-green-600">
-                <MapPin className="h-4 w-4" />
-              </div>
+              <button className="bg-orange-500 p-3 rounded-lg hover-lift cursor-pointer transition-all duration-300 hover:bg-orange-600 flex items-center justify-center">
+                <Mail className="h-5 w-5 text-white" />
+              </button>
+              <button className="bg-blue-500 p-3 rounded-lg hover-lift cursor-pointer transition-all duration-300 hover:bg-blue-600 flex items-center justify-center">
+                <Phone className="h-5 w-5 text-white" />
+              </button>
+              <button className="bg-green-500 p-3 rounded-lg hover-lift cursor-pointer transition-all duration-300 hover:bg-green-600 flex items-center justify-center">
+                <MapPin className="h-5 w-5 text-white" />
+              </button>
             </div>
           </div>
 
