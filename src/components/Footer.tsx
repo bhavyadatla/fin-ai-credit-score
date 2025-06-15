@@ -16,16 +16,25 @@ const Footer = () => {
             <p className="text-slate-300 mb-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               Empowering financial inclusion through AI-powered alternative credit scoring.
             </p>
-            <div className="flex space-x-4 animate-scale-in" style={{ animationDelay: '0.4s' }}>
-              <button className="bg-orange-500 p-3 rounded-lg hover-lift cursor-pointer transition-all duration-300 hover:bg-orange-600 flex items-center justify-center">
-                <Mail className="h-5 w-5 text-white" />
-              </button>
-              <button className="bg-blue-500 p-3 rounded-lg hover-lift cursor-pointer transition-all duration-300 hover:bg-blue-600 flex items-center justify-center">
-                <Phone className="h-5 w-5 text-white" />
-              </button>
-              <button className="bg-green-500 p-3 rounded-lg hover-lift cursor-pointer transition-all duration-300 hover:bg-green-600 flex items-center justify-center">
-                <MapPin className="h-5 w-5 text-white" />
-              </button>
+            <div className="space-y-3 animate-scale-in" style={{ animationDelay: '0.4s' }}>
+              <div className="flex items-center space-x-3 text-slate-300">
+                <div className="bg-orange-500 p-2 rounded-lg">
+                  <Mail className="h-4 w-4 text-white" />
+                </div>
+                <span>contact@creditai.com</span>
+              </div>
+              <div className="flex items-center space-x-3 text-slate-300">
+                <div className="bg-blue-500 p-2 rounded-lg">
+                  <Phone className="h-4 w-4 text-white" />
+                </div>
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center space-x-3 text-slate-300">
+                <div className="bg-green-500 p-2 rounded-lg">
+                  <MapPin className="h-4 w-4 text-white" />
+                </div>
+                <span>San Francisco, CA</span>
+              </div>
             </div>
           </div>
 
